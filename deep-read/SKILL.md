@@ -59,6 +59,7 @@ Organize notes in source order, marking each section with its timestamps or line
 
 - **Content**: claims, steps, examples, settings, numbers. Record numbers as stated, marked "as stated by the author, unverified".
 - **Recognition errors**: speech-to-text or OCR mistakes, collected in a "as written → actually means" table, e.g. `claw` → Claude. Never edit the source; map it in the notes.
+  When a word keeps recurring but its literal meaning doesn't fit the context, and only a stretched "inferred from context" reading makes it work, treat it as a homophone error and look for the real word instead of inventing a meaning. Example: in a 4-hour Chinese interview, 搏击 ("combat sports") appeared 128 times in passages that were all about building lean muscle; the notes explained it away as "means fitness, not fighting", but the speaker was saying 薄肌 ("lean muscle"), which sounds the same.
 - **Contradictions**: the same thing stated two different ways. Mark with ⚠️ and note where each occurs.
 - **Unkept promises**: "I'll cover this later" / "I'll explain why" with no follow-through. Log each promise when you meet it, then check them all once the whole source is read; mark unkept ones with ⚠️.
 
