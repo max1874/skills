@@ -2,6 +2,10 @@
 
 skills is a public collection of agent skills for Claude Code that I use daily and have hardened on real work. Each one is a folder with a `SKILL.md`, usable from Claude Code as `/name`.
 
+<a href="https://max1874.com/skills/"><img src="docs/demo.en.gif" width="600" alt="deep-read reads a 1547-line transcript chunk by chunk and writes notes after each chunk"></a>
+
+<sub>A recorded demo from [max1874.com/skills](https://max1874.com/skills/), where you can try it yourself.</sub>
+
 [中文说明](#中文说明)
 
 ## deep-read
@@ -57,6 +61,10 @@ More: [max1874.com/skills](https://max1874.com/skills/)
 ## 中文说明
 
 skills 是一组公开的 Claude Code agent skill，都是我日常在用、在真实任务里打磨过的。每个 skill 是一个带 `SKILL.md` 的文件夹，在 Claude Code 里用 `/名字` 调用。
+
+<a href="https://max1874.com/skills/"><img src="docs/demo.zh.gif" width="600" alt="deep-read 一块一块读完 1547 行的转写稿，每读完一块记一次笔记"></a>
+
+<sub>动图录自 [max1874.com/skills](https://max1874.com/skills/)，那里可以亲手试。</sub>
 
 ### deep-read：让 agent 真的把长材料读完，并证明读完了
 
