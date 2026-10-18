@@ -29,6 +29,12 @@ Real case: a 3-hour YouTube course transcript (~41k words, ~54k tokens, too big 
 
 ## Workflow
 
+### Step 0: Write down what it's for
+
+Before reading, settle one line of **purpose**: which project or decision this source serves, such as a rule you're about to change, a product you're building, a device you just bought.
+If the conversation makes it clear, write it down; if not, ask the user once. If nobody can name one, write "unspecified" and read it anyway: the user asked for the read, so this line is not a gate.
+It exists so that, later, you can tell how much of what was read actually got used. Notes nobody needed at decision time tend not to be recalled when a decision comes. Notes read for a concrete project, by contrast, turn straight into something used.
+
 ### Step 1: Prepare a reading copy
 
 Run the script in this skill's directory (path relative to the skill directory; Python 3 standard library only):
@@ -66,6 +72,7 @@ Organize notes in source order, marking each section with its timestamps or line
 ### Step 4: Wrap up
 
 - Put a **coverage statement** at the top of the notes: which file, how many lines after wrapping, how many chunks, and each chunk's line range. This is the evidence that everything was read.
+  Put the Step 0 purpose in the same section, on its own line: `- Purpose: <project or decision / unspecified>`. Keep the wording fixed so a script can find it.
 - **Keep the source and your judgment apart**: what the author said goes in the body; your own views go in a separate "my take" section.
 - In the reply, give the coverage statement first, then conclusions, then the ⚠️ items.
 
