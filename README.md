@@ -18,6 +18,7 @@ Hand an agent a 3-hour transcript and it will usually read part of it — a sing
 2. The agent reads every chunk in order, itself — no subagent summaries, no sampling.
 3. Notes are written after each chunk, so progress survives context compaction.
 4. The notes open with a **coverage statement** (file, line count, each chunk's range), and flag speech-to-text errors, contradictions, and promises the source never kept.
+5. A second agent reads the source from scratch without seeing the notes; every disagreement is checked against the source. It catches what the first reader is anchored against, like a host's summary recorded as the guest's view.
 
 On a 3-hour YouTube course (~41k words), this surfaced what a skim would miss: `$6.41` transcribed as `$641`, a community size stated two different ways, and two "I'll explain later"s that never came.
 

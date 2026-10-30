@@ -22,18 +22,19 @@ Real case: a 3-hour YouTube course transcript (~41k words, ~54k tokens, too big 
 
 ## Rules
 
-- **Read it yourself; never delegate the reading.** Subagents may look up outside facts (who the author is, the publish date), but reading and distilling the source is the main agent's job.
+- **Read it yourself; never delegate the reading.** Subagents may look up outside facts (who the author is, the publish date), but reading and distilling the source is the main agent's job. The one exception is Step 4's independent second read: it runs after your notes are written and is used only for comparison.
 - **No conclusions until every line is read.** grep, head/tail, or "picking the key paragraphs" never substitute for reading.
 - **Write notes after every chunk.** Write that chunk's notes to a file before reading the next one, so progress survives context compaction.
 - **Every chunk must be readable.** Keep lines short in the reading copy, so the source can always be split into chunks under the limit.
 
 ## Workflow
 
-### Step 0: Write down what it's for
+### Step 0: Is a decision already waiting on it?
 
-Before reading, settle one line of **purpose**: which project or decision this source serves, such as a rule you're about to change, a product you're building, a device you just bought.
-If the conversation makes it clear, write it down; if not, ask the user once. If nobody can name one, write "unspecified" and read it anyway: the user asked for the read, so this line is not a gate.
-It exists so that, later, you can tell how much of what was read actually got used. Notes nobody needed at decision time tend not to be recalled when a decision comes. Notes read for a concrete project, by contrast, turn straight into something used.
+Before reading, check whether the conversation has a **decision already waiting on this source**: a rule you're about to change, a product choice, a device you just bought.
+If so, add a line `- Question going in: <that decision>` to the coverage statement and take notes with it in mind.
+If not, write nothing and don't ask the user; read neutrally and record what is there. Nobody knows what an exploratory source holds before reading it, so asking first only forces a guess, and the guessed purpose becomes a filter on the reading.
+The underlying problem is notes that are not recalled when a decision comes, so the Step 5 description must be written for the agent that will be making that decision.
 
 ### Step 1: Prepare a reading copy
 
@@ -68,13 +69,32 @@ Organize notes in source order, marking each section with its timestamps or line
   When a word keeps recurring but its literal meaning doesn't fit the context, and only a stretched "inferred from context" reading makes it work, treat it as a homophone error and look for the real word instead of inventing a meaning. Example: in a 4-hour Chinese interview, 搏击 ("combat sports") appeared 128 times in passages that were all about building lean muscle; the notes explained it away as "means fitness, not fighting", but the speaker was saying 薄肌 ("lean muscle"), which sounds the same.
 - **Contradictions**: the same thing stated two different ways. Mark with ⚠️ and note where each occurs.
 - **Unkept promises**: "I'll cover this later" / "I'll explain why" with no follow-through. Log each promise when you meet it, then check them all once the whole source is read; mark unkept ones with ⚠️.
+- **Who said it**: in interviews, when the host summarizes for the guest and the guest only answers "right", record it as the host's words. Record the guest's guesses as guesses, not claims.
 
-### Step 4: Wrap up
+### Step 4: Independent second read, compared against your notes
+
+Once the notes are written and before replying, start a subagent that reads the same `read.txt` from the start. It **must not read your notes** and is not shown your conclusions. Do this for every source, whatever its length.
+Unanchored by your notes, it catches two kinds of mistakes you cannot catch yourself: words attributed to the wrong speaker, and passages that don't fit the reading you settled on.
+
+Ask it to:
+- read every line following `prepare.py`'s chunk plan and report its coverage;
+- list the points it thinks most worth keeping, each with line numbers and marked as **guest's claim, guest's guess, or host's words**;
+- list contradictions, unkept promises, unsupported claims, and broken sentences;
+- list the passages it deliberately skipped, and why.
+
+Compare in three groups: what it picked and you didn't, what you picked and it didn't, and what both picked but read differently.
+Check every disagreement against those lines of the source and fix the notes to match the source. Don't merge its output into the notes directly; it makes mistakes too.
+Then add a "cross-check" line at the end of the notes' ⚠️ section saying which items the second read found.
+
+It costs about 3x the reading copy's tokens (a 2-hour interview: ~100k tokens, ~2 minutes).
+Real case: on a 2-hour podcast interview, the second read found that the notes had recorded four of the host's summaries as the guest's views, and two contradictions the notes had not flagged.
+
+### Step 5: Wrap up
 
 - Put a **coverage statement** at the top of the notes: which file, how many lines after wrapping, how many chunks, and each chunk's line range. This is the evidence that everything was read.
-  Put the Step 0 purpose in the same section, on its own line: `- Purpose: <project or decision / unspecified>`. Keep the wording fixed so a script can find it.
 - **Keep the source and your judgment apart**: what the author said goes in the body; your own views go in a separate "my take" section.
-- In the reply, give the coverage statement first, then conclusions, then the ⚠️ items.
+- **Write a one-line description** at the top of the notes: what the source is, then its most important conclusion, written for an agent deciding whether to open it.
+- In the reply, give the coverage statement first, then conclusions, then the ⚠️ items, then what the second read found and what changed in the notes.
 
 ## Don't
 
