@@ -80,13 +80,14 @@ Ask it to:
 - read every line following `prepare.py`'s chunk plan and report its coverage;
 - list the points it thinks most worth keeping, each with line numbers and marked as **guest's claim, guest's guess, or host's words**;
 - list contradictions, unkept promises, unsupported claims, and broken sentences;
+- **check the source's factual claims on the web** (names, dates, numbers, events, products), giving the public record, a link, and its confidence for each; a reader who only sees the source cannot catch where it disagrees with the outside world;
 - list the passages it deliberately skipped, and why.
 
 Compare in three groups: what it picked and you didn't, what you picked and it didn't, and what both picked but read differently.
-Check every disagreement against those lines of the source and fix the notes to match the source. Don't merge its output into the notes directly; it makes mistakes too.
+Check every disagreement against those lines of the source and fix the notes to match the source; open the links behind any outside fact it found before writing it into the notes, and cite them. Don't merge its output into the notes directly; it makes mistakes too.
 Then add a "cross-check" line at the end of the notes' ⚠️ section saying which items the second read found.
 
-It costs about 3x the reading copy's tokens (a 2-hour interview: ~100k tokens, ~2 minutes).
+Cost: the subagent has a fixed overhead of about 50k tokens, plus about 3x the reading copy's tokens (a 15-minute video with web checks: ~75k tokens; a 2-hour interview: ~100k tokens; about two minutes each).
 Real case: on a 2-hour podcast interview, the second read found that the notes had recorded four of the host's summaries as the guest's views, and two contradictions the notes had not flagged.
 
 ### Step 5: Wrap up
