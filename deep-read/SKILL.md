@@ -1,105 +1,131 @@
 ---
 name: deep-read
-description: Reads a long source (course or podcast transcript, SRT/VTT subtitles, long article, meeting notes, long PDF) line by line to the end, without skimming, sampling, or summarizing from impressions, and leaves a coverage record proving every line was read. Use when the user says "read it all", "don't skip anything", "go through it properly", or hands over tens of thousands of words to distill, take notes on, or answer detailed questions about.
+description: Understands a long source (course, podcast or speech transcript, SRT/VTT subtitles, long article, meeting notes, long PDF). Reads every line to the end without skimming or sampling, works out what the author is saying, how they say it and what it means for the reader, then checks facts only as far as the kind of source calls for. Use when the user says "read it all", "really understand this", "don't skip anything", "go through it properly", or hands over tens of thousands of words to distill, take notes on, or answer detailed questions about.
 ---
 
 # Deep read
 
-## Why this exists
+## The goal
 
-When an agent reads a long source, it often misses content without noticing, then writes a summary that looks complete:
+Understand the source: what the author is saying, how they say it, where it is strong and where it does not hold, and what it means for the reader.
+Reading every line is the floor, not the goal. Finding errors is a tool, not the output.
 
-| How content gets missed | What actually happens |
-|---|---|
-| A read is too big and errors | Read fails once a single call returns more than ~25k tokens; the agent falls back to grep or the first screen, and the rest is never read |
-| A line too long to split | offset/limit split by line. Transcripts often put a whole paragraph on one line, and a file with no line breaks is a single line; if one line exceeds the limit, there is no way to chunk it |
-| Line cap | Read returns the first 2000 lines by default; everything after is silently dropped |
-| Sampling passed off as reading | Head, tail, and a few grep hits, then straight to the summary |
-| Delegating to a subagent | The subagent returns its own summary; the main agent never saw the source |
-| Writing from memory | Reading everything first and recalling later loses early details, and context compaction erases even the impressions |
+Real case: notes on Steve Jobs' 2005 Stanford commencement address came back as an errata sheet (the Mac was not the first computer with fine typography, Pixar was bought rather than founded, the cancer timeline was compressed) with one line on what the speech was about. The user asked why the read was stuck on trivia instead of understanding what the speech meant, and whether nitpicking was the point. The rewritten reading: all three stories are about losing something and finding it had been in the way; each story removes one reason not to follow your heart; and the whole speech is a farewell from a man who had recently believed he was dying, passing the baton on. The cause was the old version of this skill: every step asked for proof of reading or for errors, and none asked for understanding.
 
-Real case: a 3-hour YouTube course transcript (~41k words, ~54k tokens, too big for one read). Read in 4 chunks with this workflow, it surfaced things a sampled read would not: the same community size stated two different ways, `$6.41` transcribed as `$641`, a topic promised in the intro and never covered, and an explanation promised mid-course and never given.
+## First, what kind of source is it
 
-## Rules
+| Kind | Examples | Focus | Fact-checking |
+|---|---|---|---|
+| Ideas, a life, a person | Speeches, essays, profile interviews, stories | The main point, how the argument or story unfolds, how this person thinks, where the feeling lands | In an appendix; raised in the reply only when a discrepancy changes the meaning |
+| Methods, experience | Courses, tutorials, build write-ups | The method, the conditions it depends on, whether it transfers to the reader's work | Only the premises the method relies on |
+| Factual claims the reader may act on | Investing, products, news, technical judgments | Claims and their evidence | The main job: check numbers, dates and events one by one |
 
-- **Read it yourself; never delegate the reading.** Subagents may look up outside facts (who the author is, the publish date), but reading and distilling the source is the main agent's job. The one exception is Step 4's independent second read: it runs after your notes are written and is used only for comparison.
-- **No conclusions until every line is read.** grep, head/tail, or "picking the key paragraphs" never substitute for reading.
-- **Write notes after every chunk.** Write that chunk's notes to a file before reading the next one, so progress survives context compaction.
-- **Every chunk must be readable.** Keep lines short in the reading copy, so the source can always be split into chunks under the limit.
+When a source mixes kinds, go by the one that carries the most weight.
+
+## The floor: nothing goes unread
+
+When an agent reads a long source, it often misses content without noticing:
+- Read errors once a single call returns more than ~25k tokens, so the agent falls back to grep or the first screen.
+- Transcripts often put a whole paragraph on one line; one line over the limit cannot be split.
+- Read returns the first 2000 lines by default.
+- Head, tail and a few grep hits get passed off as reading.
+- A subagent reads it and returns its own summary.
+- Reading everything first and recalling later loses early details, and context compaction erases even the impressions.
+
+So:
+
+- **Read it yourself.** Subagents do only two things: look up outside facts, and Step 4's independent reading.
+- **No conclusions until every line is read.** grep, head/tail and "picking the key paragraphs" never substitute.
+- **Write notes after every chunk**, so progress survives context compaction.
+- **Keep every line of the reading copy short**, so the source can always be split into chunks under the limit.
 
 ## Workflow
 
 ### Step 0: Is a decision already waiting on it?
 
-Before reading, check whether the conversation has a **decision already waiting on this source**: a rule you're about to change, a product choice, a device you just bought.
-If so, add a line `- Question going in: <that decision>` to the coverage statement and take notes with it in mind.
-If not, write nothing and don't ask the user; read neutrally and record what is there. Nobody knows what an exploratory source holds before reading it, so asking first only forces a guess, and the guessed purpose becomes a filter on the reading.
-The underlying problem is notes that are not recalled when a decision comes, so the Step 5 description must be written for the agent that will be making that decision.
+Check whether the conversation has a **decision already waiting on this source**: a rule about to change, a product choice, a device just bought.
+If so, add a line `- Question going in: <that decision>` above the "Read:" line at the end of the notes, and take notes with it in mind. If not, write nothing and don't ask. Asking first about an exploratory source forces a guess, and the guessed purpose becomes a filter on the reading.
 
 ### Step 1: Prepare a reading copy
 
-Run the script in this skill's directory (path relative to the skill directory; Python 3 standard library only):
+Run the script in this skill's directory (Python 3 standard library only):
 
 ```bash
 python3 scripts/prepare.py <file> --out <scratch dir>
 ```
 
 - `.srt` / `.vtt`: strips cue numbers and timestamps, merges the repeated lines of rolling captions, writes `transcript.txt` as paragraphs each starting with `[HH:MM:SS]`, then builds `read.txt` from it.
-- Other plain text: builds `read.txt` directly, keeping existing blank lines.
+- Other plain text: builds `read.txt` directly, keeping blank lines.
 - The script prints the longest original line, line count, estimated tokens, and the Read parameters for each chunk.
-- The two defaults:
-  - **Lines of at most 200 characters**: any source can then be split by line, and one line holds only a sentence or two, so notes can cite the source by line number precisely.
-  - **Chunks of about 15k tokens**: Read errors above ~25k tokens. Chunking by characters failed in practice: 60k Chinese characters came to ~64k tokens. The script estimates about 4 English characters per token and 1 CJK character per token, with margin. If Read still reports the limit, lower `--chunk-tokens` and rerun.
-- PDF: if it has a text layer, convert with `pdftotext -layout` first, then run the script. `pdftotext` ships with poppler (`brew install poppler` on macOS, `apt install poppler-utils` on Debian/Ubuntu). For scanned PDFs, or without poppler, use Read's `pages` parameter, up to 20 pages per call, in page order.
-- Web pages / HTML: extract plain text first, then run the script.
+- Defaults: lines of at most 200 characters, chunks of about 15k tokens (about 4 English characters or 1 CJK character per token, with margin). If Read still reports the limit, lower `--chunk-tokens` and rerun.
+- PDF: with a text layer, convert with `pdftotext -layout` first (poppler: `brew install poppler`, `apt install poppler-utils`). Scanned PDFs: Read's `pages` parameter, up to 20 pages per call, in page order.
+- Web pages / HTML: extract plain text first.
 
 Keep the reading copy in a scratch directory, not in the repo.
 
-### Step 2: Read chunk by chunk
+### Step 2: Read chunk by chunk, noting as you go
 
-- Follow the script's offset/limit plan in order. Each chunk starts at the previous chunk's last line + 1, with no gaps.
-- If the source is too big for one session (roughly 150k+ tokens), spread it over several sessions. Record "read up to line N" at the top of the notes file and resume from there.
+- Follow the chunk plan in order with no gaps. If the source is bigger than one session can hold (roughly 150k tokens or more), split it across sessions and note "read up to line N" in the notes.
+- After each chunk, write down its content in source order: claims, examples, numbers (as stated), with line numbers or timestamps.
+- **Who said it**: in conversations, a host's summary that the guest merely agrees to is the host's view; a guest's guess is recorded as a guess.
+- **Recognition errors**: speech-to-text or OCR errors go in a mapping table (`claw` → Claude); never edit the source. A word that recurs and does not fit its context is probably a homophone error: find the real word instead of inventing a meaning for it.
+- **Clues to the main point**: words or images the author keeps returning to, turns in the structure, where they lean in, what is set up at the start and picked up at the end. Note them; Step 3 needs them.
 
-### Step 3: Write notes after each chunk
+### Step 3: Once finished, write "What it is saying"
 
-Organize notes in source order, marking each section with its timestamps or line range so the source can be checked. For each chunk, record at least:
+With everything read, step back from the details and answer:
 
-- **Content**: claims, steps, examples, settings, numbers. Record numbers as stated, marked "as stated by the author, unverified".
-- **Recognition errors**: speech-to-text or OCR mistakes, collected in a "as written → actually means" table, e.g. `claw` → Claude. Never edit the source; map it in the notes.
-  When a word keeps recurring but its literal meaning doesn't fit the context, and only a stretched "inferred from context" reading makes it work, treat it as a homophone error and look for the real word instead of inventing a meaning. Example: in a 4-hour Chinese interview, 搏击 ("combat sports") appeared 128 times in passages that were all about building lean muscle; the notes explained it away as "means fitness, not fighting", but the speaker was saying 薄肌 ("lean muscle"), which sounds the same.
-- **Contradictions**: the same thing stated two different ways. Mark with ⚠️ and note where each occurs.
-- **Unkept promises**: "I'll cover this later" / "I'll explain why" with no follow-through. Log each promise when you meet it, then check them all once the whole source is read; mark unkept ones with ⚠️.
-- **Who said it**: in interviews, when the host summarizes for the guest and the guest only answers "right", record it as the host's words. Record the guest's guesses as guesses, not claims.
+- **Main point**: what the author most wants the audience to take away, in a sentence or two.
+- **How it is said**: how the parts relate (building up, parallel, contrast, one idea from several angles) and where the center of gravity is.
+- **Strengths and problems**: why the strong parts persuade or move; for weak parts, only the ones that affect the main point.
+- **Worth taking away**: one to three things that change how one thinks or acts.
+- **For the reader**: only what genuinely lands on one of their projects, files or decisions; if nothing does, say so instead of forcing it.
 
-### Step 4: Independent second read, compared against your notes
+Write in paragraphs, not fragments. Where the author's own sentence says it best, quote it with its line number.
 
-Once the notes are written and before replying, start a subagent that reads the same `read.txt` from the start. It **must not read your notes** and is not shown your conclusions. Do this for every source, whatever its length.
-Unanchored by your notes, it catches two kinds of mistakes you cannot catch yourself: words attributed to the wrong speaker, and passages that don't fit the reading you settled on.
+### Step 4: Independent reading, then compare
 
-Ask it to:
-- read every line following `prepare.py`'s chunk plan and report its coverage;
-- list the points it thinks most worth keeping, each with line numbers and marked as **guest's claim, guest's guess, or host's words**;
-- list contradictions, unkept promises, unsupported claims, and broken sentences;
-- **check the source's factual claims on the web** (names, dates, numbers, events, products), giving the public record, a link, and its confidence for each; a reader who only sees the source cannot catch where it disagrees with the outside world;
-- list the passages it deliberately skipped, and why.
+After the notes are written and before replying, start a subagent that reads the same `read.txt` from the start. **It must not read the notes**, and it is not told your conclusions. Do this for every source.
+Its job is not to find errors but to understand the source on its own:
 
-Compare in three groups: what it picked and you didn't, what you picked and it didn't, and what both picked but read differently.
-Check every disagreement against those lines of the source and fix the notes to match the source; open the links behind any outside fact it found before writing it into the notes, and cite them. Don't merge its output into the notes directly; it makes mistakes too.
-Then add a "cross-check" line at the end of the notes' ⚠️ section saying which items the second read found.
+- Read every line following the chunk plan and report the coverage.
+- State the main point it read, the overall structure and the three most important points, each with line numbers.
+- Point out the places most likely to be misread; in conversations, mark who said what (guest claim, guest guess, host).
+- Check facts according to the kind of source: for factual sources, check the numbers, dates and events the claims rest on, with links; otherwise only claims that would change the main point.
 
-Cost: the subagent has a fixed overhead of about 50k tokens, plus about 3x the reading copy's tokens (a 15-minute video with web checks: ~75k tokens; a 2-hour interview: ~100k tokens; about two minutes each).
-Real case: on a 2-hour podcast interview, the second read found that the notes had recorded four of the host's summaries as the guest's views, and two contradictions the notes had not flagged.
+Then compare three things: what it saw that you did not, what you saw that it did not, and where the two readings of the main point differ.
+Check every disagreement against the source lines and correct the notes from the source. Open every link it gives before writing an outside fact into the notes, and cite it. Never merge its conclusions directly; it can be wrong too.
+
+Cost: about 50k tokens of fixed overhead plus about 3x the reading copy's tokens, more with web checks.
+
+Real cases: one independent reading caught a host's four summary lines recorded as the guest's views. In the Jobs speech, it compared the delivery with the prepared text and found that the end of the first story had been changed on stage from "this approach has never let me down" to "believing the dots will connect … will give you the confidence to follow your heart". That was the clearest single clue to the speech's meaning, and the first read had filed it under "differences".
 
 ### Step 5: Wrap up
 
-- Put a **coverage statement** at the top of the notes: which file, how many lines after wrapping, how many chunks, and each chunk's line range. This is the evidence that everything was read.
-- **Keep the source and your judgment apart**: what the author said goes in the body; your own views go in a separate "my take" section.
-- **Write a one-line description** at the top of the notes: what the source is, then its most important conclusion, written for an agent deciding whether to open it.
-- In the reply, give the coverage statement first, then conclusions, then the ⚠️ items, then what the second read found and what changed in the notes.
+Notes in this order:
+
+```
+# Notes: <title>
+
+## What it is saying        Step 3: main point, how it is said, strengths and problems
+## Worth taking away        1–3 items; uses for the reader only when real
+## Content (source order)   Step 2's chunk notes with line numbers, for reference
+## Appendix                 recognition-error table; factual discrepancies that don't affect the main point; verification note (what came from the independent reading, which links you opened yourself)
+
+Read: <file>, <N> lines, <K> chunks (<line ranges>).
+```
+
+- **Description**: one sentence, first what it is, then its main point, for whatever index the notes live in.
+- **Reply** in this order, with no fixed "coverage" or "warnings" sections:
+  1. What it is: a sentence or two in plain words.
+  2. What I understood: the main point, a few paragraphs.
+  3. Worth taking away, and what it means for the user: only what genuinely relates.
+  4. Worth watching: only when something affects understanding or a decision; otherwise omit.
+  5. One closing line: lines read; what the independent reading added (only what changed the understanding).
 
 ## Don't
 
-- Don't hand in a "roughly, it covers…" summary without a coverage statement.
-- Don't skip Step 1 and read the original file directly. Even if it fits in one read, you get no chunk plan and no line numbers, so the coverage statement has nothing to stand on.
-- Don't clean up the source to make it look tidy; map recognition errors in the notes only.
+- Don't hand in an errata sheet as the reading. Errors that don't affect the main point stay in the appendix.
+- Don't hand in a summary of a partial read, and don't skip Step 1 and read the original file directly (without the chunk plan and line numbers there is nothing to show it was read).
+- Don't clean up the source to make it look tidy.
 - Don't present your own inferences as the author's words.
