@@ -109,6 +109,7 @@ Notes in this order:
 
 ## What it is saying        Step 3: main point, how it is said, strengths and problems
 ## Worth taking away        1–3 items; uses for the reader only when real
+## The substance (by theme) arguments, methods, examples, numbers worth keeping, with line numbers; the reply's item 3 comes from here
 ## Content (source order)   Step 2's chunk notes with line numbers, for reference
 ## Appendix                 recognition-error table; factual discrepancies that don't affect the main point; verification note (what came from the independent reading, which links you opened yourself)
 
