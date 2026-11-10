@@ -119,9 +119,10 @@ Read: <file>, <N> lines, <K> chunks (<line ranges>).
 - **Reply** in this order, with no fixed "coverage" or "warnings" sections:
   1. What it is: a sentence or two in plain words.
   2. What I understood: the main point, a few paragraphs.
-  3. Worth taking away, and what it means for the user: only what genuinely relates.
-  4. Worth watching: only when something affects understanding or a decision; otherwise omit.
-  5. One closing line: lines read; what the independent reading added (only what changed the understanding).
+  3. The substance, by theme: the arguments, methods, examples and numbers worth keeping, each with line numbers. For a dense source this is the bulk of the reply; the main point alone is not a reading. This holds when notes already exist: reply from them instead of pointing at them.
+  4. Worth taking away, and what it means for the user: only what genuinely relates.
+  5. Worth watching: only when something affects understanding or a decision; otherwise omit.
+  6. One closing line: lines read; what the independent reading added (only what changed the understanding).
 
 ## Don't
 
