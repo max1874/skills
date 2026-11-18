@@ -36,7 +36,7 @@ npx skills add max1874/skills --skill deep-read
 
 Or copy the `deep-read/` folder into `~/.claude/skills/` (all projects) or `.claude/skills/` (one project). Then use `/deep-read`, or just ask the agent to read something thoroughly.
 
-Requirements: Python 3 (standard library only). For PDFs, `pdftotext` from poppler.
+Requirements: Node.js 22.18+ (no packages to install). For PDFs, `pdftotext` from poppler.
 
 ## handoff
 
@@ -72,7 +72,7 @@ A single read errors above ~25k tokens, Read returns the first 2000 lines by def
 `npx skills add max1874/skills --skill deep-read`, or copy the skill's folder into `~/.claude/skills/` (all projects) or `.claude/skills/` (one project). Then call it with `/name`.
 
 **Does it work with Codex or other agents?**
-Each skill is a standard `SKILL.md` folder, and `npx skills add` can install it for other agents (`-a codex`). `prepare.py` runs from any agent with a shell, but the reading steps (offset/limit, `pages`, the read-size limit) are written for Claude Code's Read tool.
+Each skill is a standard `SKILL.md` folder, and `npx skills add` can install it for other agents (`-a codex`). `prepare.ts` runs from any agent with a shell, but the reading steps (offset/limit, `pages`, the read-size limit) are written for Claude Code's Read tool.
 
 **Can it read subtitles and PDFs?**
 SRT/VTT become timestamped paragraphs. PDFs with a text layer go through `pdftotext -layout` first; scanned PDFs are read in page order with Read's `pages` parameter, up to 20 pages at a time.
@@ -103,7 +103,7 @@ skills 是一组公开的 Claude Code agent skill，都是我日常在用、在�
 
 **和同类的区别**：[full-output-enforcement](https://skills.sh/leonxlnx/taste-skill/full-output-enforcement) 防止 AI 写得比要求的少，`deep-read` 防止 AI 读得比给的少；[dsh-deepread](https://github.com/xiehuan123/dsh-deepread) 等「深度阅读」类 skill 套分析框架，`deep-read` 以读全、留证据为底线，在此之上按材料本身读懂它。
 
-**安装**：`npx skills add max1874/skills --skill deep-read`，或者把 `deep-read/` 文件夹复制到 `~/.claude/skills/`。需要 Python 3；处理 PDF 需要 poppler 里的 `pdftotext`。
+**安装**：`npx skills add max1874/skills --skill deep-read`，或者把 `deep-read/` 文件夹复制到 `~/.claude/skills/`。需要 Node.js 22.18+，不用装任何包；处理 PDF 需要 poppler 里的 `pdftotext`。
 
 ### handoff：交接时带上「为什么」，不只是「做了什么」
 
@@ -129,7 +129,7 @@ skills 是一组公开的 Claude Code agent skill，都是我日常在用、在�
 `npx skills add max1874/skills --skill deep-read`，或者把 skill 文件夹复制到 `~/.claude/skills/`（所有项目）或 `.claude/skills/`（单个项目），然后用 `/名字` 调用。
 
 **能用在 Codex 或其他 agent 上吗？**
-每个 skill 是标准的 `SKILL.md` 文件夹，`npx skills add` 可以装给其他 agent（`-a codex`）。`prepare.py` 在任何能跑命令的 agent 里都能用，但读取步骤（offset/limit、`pages`、读取上限）是按 Claude Code 的 Read 工具写的。
+每个 skill 是标准的 `SKILL.md` 文件夹，`npx skills add` 可以装给其他 agent（`-a codex`）。`prepare.ts` 在任何能跑命令的 agent 里都能用，但读取步骤（offset/limit、`pages`、读取上限）是按 Claude Code 的 Read 工具写的。
 
 **能读字幕和 PDF 吗？**
 SRT/VTT 会转成带时间戳的段落。有文字层的 PDF 先用 `pdftotext -layout` 转成文本；扫描版用 Read 的 `pages` 参数按页序读，每次最多 20 页。

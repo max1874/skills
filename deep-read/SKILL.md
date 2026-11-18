@@ -48,10 +48,10 @@ If so, add a line `- Question going in: <that decision>` above the "Read:" line 
 
 ### Step 1: Prepare a reading copy
 
-Run the script in this skill's directory (Python 3 standard library only):
+Run the script in this skill's directory (Node.js 22.18+ runs it directly, no dependencies):
 
 ```bash
-python3 scripts/prepare.py <file> --out <scratch dir>
+node scripts/prepare.ts <file> --out <scratch dir>
 ```
 
 - `.srt` / `.vtt`: strips cue numbers and timestamps, merges the repeated lines of rolling captions, writes `transcript.txt` as paragraphs each starting with `[HH:MM:SS]`, then builds `read.txt` from it.
