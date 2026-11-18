@@ -1,6 +1,7 @@
 ---
 name: mac-uninstall
-description: Fully uninstalls a macOS app and reverse-audits old leftovers, covering what AppCleaner and similar tools miss: vendor-named folders, auto-update daemons, agent skill injection, keychain master keys, the LaunchServices registry. Use when the user says "uninstall X", "remove it completely", "check it is fully uninstalled", "does this app have leftovers", "did apps I uninstalled before leave anything behind", "卸载 X", "删干净", "彻底卸载", "检查卸载干净了没", "这个 app 还有残留吗" or "以前卸的软件有没有没清干净的".
+description: >-
+  Fully uninstalls a macOS app and reverse-audits old leftovers, covering what AppCleaner and similar tools miss: vendor-named folders, auto-update daemons, agent skill injection, keychain master keys, the LaunchServices registry. Use when the user says "uninstall X", "remove it completely", "check it is fully uninstalled", "does this app have leftovers", "did apps I uninstalled before leave anything behind", "卸载 X", "删干净", "彻底卸载", "检查卸载干净了没", "这个 app 还有残留吗" or "以前卸的软件有没有没清干净的".
 ---
 
 # Fully uninstall a macOS app
