@@ -12,7 +12,7 @@ The rules file is a list; the first rule that matches, from the top, wins; patte
   [{"pattern": "agent/src/backtest/*", "group": "G1", "status": "to-read"},
    {"pattern": "frontend/*", "status": "skip", "reason": "frontend UI, not relevant to us"}]
 `;
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 type Row = Record<(typeof FIELDS)[number], string>;
@@ -143,6 +143,7 @@ function* walk(dir: string, rel = ""): Generator<[string, string]> {
 
 function cmdInit(repo: string, work: string) {
   repo = resolve(repo);
+  if (!statSync(repo, { throwIfNoEntry: false })?.isDirectory()) fail(`not a directory: ${repo}`);
   mkdirSync(work, { recursive: true });
   // Python sorts paths component by component; NUL sorts below every character a file name can hold.
   const key = (path: string) => path.replaceAll("/", "\0");

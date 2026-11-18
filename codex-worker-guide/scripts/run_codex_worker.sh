@@ -29,13 +29,12 @@ fi
 
 # Newest Sol model by Codex's own ranking (lower priority = preferred).
 default_model() {
-  python3 - "${CODEX_HOME:-$HOME/.codex}/models_cache.json" <<'PY' 2>/dev/null || true
-import json, sys
-models = json.load(open(sys.argv[1]))["models"]
-sol = [m for m in models if m.get("slug", "").endswith("-sol") and m.get("visibility") == "list"]
-if sol:
-    print(min(sol, key=lambda m: m.get("priority", 1 << 30))["slug"])
-PY
+  node -e '
+const rank = m => m.priority ?? 2 ** 30;
+const sol = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8")).models
+  .filter(m => m.slug?.endsWith("-sol") && m.visibility === "list");
+if (sol.length) console.log(sol.reduce((best, m) => rank(m) < rank(best) ? m : best).slug);
+' "${CODEX_HOME:-$HOME/.codex}/models_cache.json" 2>/dev/null || true
 }
 
 mode=${1:-}
@@ -221,23 +220,14 @@ session_file="$run_dir/session-id.txt"
 
 record_session() {
   local detected
-  detected=$(python3 - "$events_file" <<'PY' 2>/dev/null || true
-import json
-from pathlib import Path
-import sys
-
-for line in Path(sys.argv[1]).read_text(errors="replace").splitlines():
-    try:
-        event = json.loads(line)
-    except json.JSONDecodeError:
-        continue
-    if event.get("type") == "thread.started":
-        value = event.get("thread_id") or event.get("session_id")
-        if value:
-            print(value)
-            break
-PY
-)
+  detected=$(node -e '
+for (const line of require("fs").readFileSync(process.argv[1], "utf8").split("\n")) {
+  let event;
+  try { event = JSON.parse(line); } catch { continue; }
+  const id = event.type === "thread.started" && (event.thread_id || event.session_id);
+  if (id) { console.log(id); break; }
+}
+' "$events_file" 2>/dev/null || true)
   if [[ -n "$detected" ]]; then
     printf '%s\n' "$detected" >"$session_file"
   elif [[ -n "$session_id" ]]; then
@@ -331,15 +321,12 @@ record_session
 sid=$(cat "$session_file")
 rollout=""
 [[ -n "$sid" ]] && rollout=$(find "${CODEX_HOME:-$HOME/.codex}/sessions" -name "rollout-*$sid.jsonl" -print -quit 2>/dev/null || true)
-spawned=$(python3 - "$rollout" <<'PY' 2>/dev/null || echo unknown
-import json, sys
-calls = 0
-for line in open(sys.argv[1]):
-    payload = json.loads(line).get("payload") or {}
-    calls += payload.get("type") == "function_call" and payload.get("name") == "spawn_agent"
-print(calls)
-PY
-)
+spawned=$(node -e '
+const calls = require("fs").readFileSync(process.argv[1], "utf8").split("\n").filter(Boolean)
+  .map(line => JSON.parse(line).payload ?? {})
+  .filter(p => p.type === "function_call" && p.name === "spawn_agent").length;
+console.log(calls);
+' "$rollout" 2>/dev/null || echo unknown)
 
 printf 'run_directory=%s\n' "$run_dir"
 printf 'exit_status=%s\n' "$status"

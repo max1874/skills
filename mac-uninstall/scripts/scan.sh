@@ -9,8 +9,8 @@ BIDPRE="${3:-}"
 EXTRASH="${4:-}"
 
 # Known same-name noise, filtered out on a match
-NOISE='meego|ctcategories|negotiator|DerivedData|/\.Trash/'
-[ "$EXTRASH" = "--exclude-trash" ] && NOISE="$NOISE"
+NOISE='meego|ctcategories|negotiator|DerivedData'
+[ "$EXTRASH" = "--exclude-trash" ] && NOISE="$NOISE|/\.Trash/"
 
 filt() { grep -viE "$NOISE" || true; }
 sec()  { printf '\n\033[1m[%s] %s\033[0m\n' "$1" "$2"; }

@@ -14,7 +14,7 @@ These criteria come from the judgment used when a global skill set was cut from 
 - **General methods don't become skills**: working principles like "a review should check the news" or "read the call chain first" go into the global or repository AGENTS.md; if already covered, write nothing.
 - **Archive skills that are rarely used**, and bring them back when needed.
 - **Keep each lesson in one maintained place**: if an existing skill or file can hold it, add it there instead of starting a new one.
-- A skill is documentation and takes effect only when invoked, so it does not count as "changing structure". To keep a failure from recurring, first see whether the guard can hang on the action itself (a hook, a script gate).
+- A skill is documentation and takes effect only when invoked, so it does not count as "changing structure". To keep a failure from recurring, first see whether the guard can hang on the action itself (a script gate, a check in the tool).
 
 Once it is decided, pick one of three uses as needed, or run them in sequence:
 
