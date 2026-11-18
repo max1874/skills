@@ -38,6 +38,28 @@ Or copy the `deep-read/` folder into `~/.claude/skills/` (all projects) or `.cla
 
 Requirements: Python 3 (standard library only). For PDFs, `pdftotext` from poppler.
 
+## handoff
+
+**Hands work to a fresh session with the reason it exists, not just what was built.**
+
+A handoff usually records how the work was built: architecture, what passed, what is left. It drops why the work exists. The next session takes a side effect for the goal, and each later handoff summarizes the previous summary, so the original purpose fades a little each time. `handoff` closes that gap:
+
+1. It starts from the primary source: the user's own messages in the session logs (Claude Code and Codex both keep them as JSONL). It does not write from memory or from the last summary, and it lists every request made, including asides and deferrals.
+2. Facts that will still be true next month go into the project's standing instructions (`AGENTS.md`, `CLAUDE.md`), so every session loads them, handoff or not.
+3. The handoff has fixed sections: purpose in the user's words, next step, open requests, decisions with reasons and rejected options, state marked *verified* or *believed*, authority, sources, suggested skills.
+4. Two checks before it is done. Every listed request must appear in the handoff. Then a reader with no context gets only the handoff and the repository and must say why the project exists.
+5. A session that starts from a handoff reads the original conversation's first messages too, and restates the purpose before it begins.
+
+On a real project, a reader given the old handoff said the files never explained why the project was built, and picked a cleanup task as the next step. Given the rewritten one, it named the original frustration and picked the outcome the project was started for.
+
+**How it differs:** Matt Pocock's [handoff](https://github.com/mattpocock/skills/tree/main/skills/productivity/handoff) writes a portable summary to the temp directory, for moving work to another harness or person, and its docs note that it captures the what more than the why. This one keeps a durable file in the project and is built around carrying the why.
+
+```bash
+npx skills add max1874/skills --skill handoff
+```
+
+Then use `/handoff`, optionally with what the next session will do.
+
 ## FAQ
 
 **How do I make Claude Code read a long document or transcript all the way through?**
@@ -82,6 +104,18 @@ skills 是一组公开的 Claude Code agent skill，都是我日常在用、在�
 **和同类的区别**：[full-output-enforcement](https://skills.sh/leonxlnx/taste-skill/full-output-enforcement) 防止 AI 写得比要求的少，`deep-read` 防止 AI 读得比给的少；[dsh-deepread](https://github.com/xiehuan123/dsh-deepread) 等「深度阅读」类 skill 套分析框架，`deep-read` 以读全、留证据为底线，在此之上按材料本身读懂它。
 
 **安装**：`npx skills add max1874/skills --skill deep-read`，或者把 `deep-read/` 文件夹复制到 `~/.claude/skills/`。需要 Python 3；处理 PDF 需要 poppler 里的 `pdftotext`。
+
+### handoff：交接时带上「为什么」，不只是「做了什么」
+
+交接通常记下了架构、验收结果和剩下的活，却丢了这件事为什么要做。接手的会话于是把副产品当成目标；每次交接又是在转述上一次的转述，最初的目的一点点消失。`handoff` 这样做：
+
+1. 先回到原始对话：从会话记录（Claude Code 和 Codex 都存成 JSONL）里读用户自己的话，不凭记忆、不拿上一份摘要当依据，并把提过的每个要求列出来，包括顺口一提和说「以后再做」的。
+2. 下个月还成立的事写进项目的常驻说明（`AGENTS.md`、`CLAUDE.md`），不靠交接传递。
+3. 交接固定分段：用户原话里的目的、下一步、未完成的要求、已定的决定（含理由和被否掉的选项）、标明「已验证」或「推测」的现状、授权、出处、建议使用的 skill。
+4. 写完做两项检查：每个要求都要在交接里找得到；再让一个没有上下文的读者只看交接和仓库，说出这个项目为什么存在。
+5. 接手的会话也要读原始对话的开头几句，开工前先复述目的。
+
+**安装**：`npx skills add max1874/skills --skill handoff`，然后用 `/handoff`。
 
 ### 常见问题
 
