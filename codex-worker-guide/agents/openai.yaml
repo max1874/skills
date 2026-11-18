@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Worker Guide"
+  short_description: "How to call a Codex worker with any model and effort."
+  default_prompt: "Follow $codex-worker-guide to dispatch this implementation to a Codex worker and independently verify the result."

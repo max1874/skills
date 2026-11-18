@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Character sheet template: replace every {{…}} and all sample text with this character's content; set --main to the character's main color and --accent to the accent color -->
+<title>{{Name}} IP character sheet</title>
+<style>
+:root{--main:#AA7B56;--accent:#2F6BFF;--ink:#1A1A1A;--paper:#FFFFFF;--bg:#F6F5F1;--muted:#6E6E6A;--line:#DEDDD6;--tint:#FBEEDA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.75 "PingFang SC",-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:980px;margin:0 auto;padding:48px 16px 96px}
+.mono{font-family:"SF Mono",Menlo,monospace}
+header{display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:40px}
+header img{width:220px;height:220px;border-radius:50%;border:2px solid var(--ink);object-fit:cover;background:var(--paper)}
+.kicker{font:600 13px/1 "SF Mono",Menlo,monospace;letter-spacing:3px;color:var(--muted)}
+h1{font-size:64px;line-height:1.1;margin:12px 0 8px;letter-spacing:-1px}
+h1 small{font-size:22px;color:var(--muted);font-weight:500;letter-spacing:0;margin-left:12px}
+.tagline{font-size:22px;margin:0}
+h2{font-size:28px;margin:64px 0 8px;display:flex;gap:14px;align-items:baseline}
+h2 .mono{font-size:14px;color:var(--accent);letter-spacing:2px}
+.lead{color:var(--muted);margin:0 0 20px}
+figure{margin:20px 0 0;background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+figure img{width:100%;display:block}
+figcaption{border-top:1px solid var(--line);padding:12px 18px;font-size:14px;color:var(--muted)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.grid3 div{padding:10px 14px;font-size:14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.grid3 div:nth-child(3n){border-right:0}
+.grid3 b{display:block;font-size:15px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:var(--paper);border:2px solid var(--ink);border-radius:6px;padding:20px 24px}
+.card h3{margin:0 0 8px;font-size:18px}
+.card ul{margin:0;padding-left:20px}
+.card li{margin:4px 0}
+.do h3:before{content:"✓ ";color:#1E8E3E}.dont h3:before{content:"✕ ";color:#D93025}
+table{width:100%;border-collapse:collapse;background:var(--paper);border:2px solid var(--ink)}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 13px/1.4 "SF Mono",Menlo,monospace;letter-spacing:1px;color:var(--muted);background:#FBFAF7}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:16px}
+.sw{border:2px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--paper)}
+.sw i{display:block;height:96px;border-bottom:2px solid var(--ink)}
+.sw p{margin:0;padding:10px 14px;font-size:14px}
+.sw p span{display:block;font:500 13px "SF Mono",Menlo,monospace;color:var(--muted)}
+.marks{counter-reset:m;list-style:none;padding:0;margin:0}
+.marks li{counter-increment:m;position:relative;padding:14px 0 14px 56px;border-bottom:1px solid var(--line)}
+.marks li:before{content:counter(m,decimal-leading-zero);position:absolute;left:0;top:14px;font:600 16px "SF Mono",Menlo,monospace;color:var(--accent)}
+code{font:14px "SF Mono",Menlo,monospace;background:#EDECE6;padding:1px 6px;border-radius:4px}
+@media (max-width:720px){
+  header{grid-template-columns:1fr;gap:20px}header img{width:160px;height:160px}
+  h1{font-size:48px}.cols{grid-template-columns:1fr 1fr}.grid3 div{font-size:13px}
+}
+@media (max-width:480px){.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <img src="master/avatar.png" alt="{{Name}} avatar">
+  <div>
+    <div class="kicker">IP CHARACTER SHEET · {{version, e.g. v3 final}} · {{date}}</div>
+    <h1>{{Name}} <small>{{English name or pinyin}}</small></h1>
+    <p class="tagline">{{One sentence: what it is, what personality, what it does in the content}}</p>
+  </div>
+</header>
+
+<h2><span class="mono">01</span>Who it is</h2>
+<p class="lead">{{Where it is used, who it is for}}</p>
+<div class="cols">
+  <div class="card">
+    <h3>Role</h3>
+    <ul>
+      <li>{{What it plays in the content, e.g. "the reader's stand-in: it acts out both the mistakes and the wins"}}</li>
+      <li>{{…}}</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Personality</h3>
+    <ul>
+      <li>{{Personality keyword + how it shows in the image}}</li>
+      <li>{{…}}</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="mono">02</span>Marks that must be kept</h2>
+<p class="lead">As long as a new image has all of these, it is still the character; if any one is missing, redraw it.</p>
+<ol class="marks">
+  <li><b>{{Body shape}}</b>: {{exact proportions}}</li>
+  <li><b>{{Colors}}</b>: {{which part is which color, with hex values <code>#xxxxxx</code>}}</li>
+  <li><b>{{Eyes}}</b>: {{how they are drawn, what is never drawn}}</li>
+  <li><b>{{Most recognizable feature}}</b>: {{…}}</li>
+  <li><b>{{Lines}}</b>: {{…}}</li>
+</ol>
+
+<h2><span class="mono">03</span>Turnaround</h2>
+<p class="lead">Front, three-quarter, side, back.</p>
+<figure><img src="master/turnaround.png" alt="Turnaround"><figcaption>{{Which angle shows its features best, and which angle to prefer for storytelling}}</figcaption></figure>
+
+<h2><span class="mono">04</span>Expressions</h2>
+<p class="lead">{{Which part mainly carries the emotion}}</p>
+<figure>
+  <img src="master/expressions.png" alt="Expression sheet">
+  <div class="grid3">
+    <div><b>Calm (default)</b>{{…}}</div>
+    <div><b>Curious</b>{{…}}</div>
+    <div><b>Confused</b>{{…}}</div>
+    <div><b>Shocked</b>{{…}}</div>
+    <div><b>Smug</b>{{…}}</div>
+    <div><b>Sleepy</b>{{…}}</div>
+    <div><b>Sulky</b>{{…}}</div>
+    <div><b>Happy</b>{{…}}</div>
+    <div><b>Speechless</b>{{…}}</div>
+  </div>
+</figure>
+
+<h2><span class="mono">05</span>Poses</h2>
+<p class="lead">{{Pose rules, e.g. "all four legs on the ground; never stands like a person"}}</p>
+<figure>
+  <img src="master/poses.png" alt="Pose sheet">
+  <div class="grid3">
+    <div><b>{{Pose 1}}</b>{{…}}</div>
+    <div><b>{{Pose 2}}</b>{{…}}</div>
+    <div><b>{{Pose 3}}</b>{{…}}</div>
+    <div><b>{{Pose 4}}</b>{{…}}</div>
+    <div><b>{{Pose 5}}</b>{{…}}</div>
+    <div><b>{{Pose 6}}</b>{{…}}</div>
+    <div><b>{{Pose 7}}</b>{{…}}</div>
+    <div><b>{{Pose 8}}</b>{{…}}</div>
+    <div><b>{{Pose 9}}</b>{{…}}</div>
+  </div>
+</figure>
+
+<h2><span class="mono">06</span>Palette</h2>
+<div class="swatches">
+  <div class="sw"><i style="background:#AA7B56"></i><p>{{Color name}}<span>#AA7B56</span></p></div>
+  <div class="sw"><i style="background:#1A1A1A"></i><p>Line black<span>#1A1A1A</span></p></div>
+  <div class="sw"><i style="background:#FFFFFF"></i><p>Paper white<span>#FFFFFF</span></p></div>
+  <div class="sw"><i style="background:#2F6BFF"></i><p>{{Accent color name}}<span>#2F6BFF</span></p></div>
+</div>
+<p class="lead" style="margin-top:14px">{{Which colors appear only on the character, where the accent color is used and where it must not be}}</p>
+
+<h2><span class="mono">07</span>Rules</h2>
+<div class="cols">
+  <div class="card do">
+    <h3>Do</h3>
+    <ul>
+      <li>{{…}}</li>
+    </ul>
+  </div>
+  <div class="card dont">
+    <h3>Don't</h3>
+    <ul>
+      <li>{{…}}</li>
+      <li>Put text in the image (all text is added in the layout)</li>
+      <li>Imitate any existing cartoon character</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="mono">08</span>Keeping it the same character in new images</h2>
+<table>
+  <tr><th>Stage</th><th>How</th></tr>
+  <tr><td>Reference</td><td>Attach <code>master/base.png</code> to every generation (add <code>master/turnaround.png</code> when it needs to turn), and write out every mark from section 02 in the prompt</td></tr>
+  <tr><td>Acceptance</td><td>Check each image against the marks: {{list the items to look at}}; any text in the image</td></tr>
+  <tr><td>Small drift</td><td>{{What may vary}}; {{what must not}}</td></tr>
+</table>
+
+<h2><span class="mono">09</span>Name and history</h2>
+<table>
+  <tr><th>Item</th><th>Notes</th></tr>
+  <tr><td>Name</td><td><b>{{Name}}</b>. Origin: {{…}}</td></tr>
+  <tr><td>Alternatives</td><td>{{…}}</td></tr>
+  <tr><td>Not yet checked</td><td>{{Whether name clashes and trademarks have been checked}}</td></tr>
+  <tr><td>Differences from the reference</td><td>{{At least three; delete this row if there was no reference image}}</td></tr>
+  <tr><td>History</td><td>{{v1 → v2 → … what changed in each version}}</td></tr>
+</table>
+
+</main>
+</body>
+</html>

@@ -8,6 +8,24 @@ skills is a public collection of agent skills for Claude Code that I use daily a
 
 [中文说明](#中文说明)
 
+## All skills
+
+| Skill | What it does |
+| --- | --- |
+| [deep-read](deep-read/SKILL.md) | Reads a long transcript, PDF or article to the end, proves it, and says what it means |
+| [handoff](handoff/SKILL.md) | Hands work to a fresh session with why it exists, every open request, and settled decisions |
+| [read-repo](read-repo/SKILL.md) | Reads an unfamiliar repository in full with a coverage ledger, then compares it with your own code |
+| [diagnose](diagnose/SKILL.md) | A red-loop-first diagnosis method for hard bugs, flaky failures and slowdowns in a running product |
+| [taste](taste/SKILL.md) | A working method and quality floor for designing screens and pages, with twenty high-taste exemplars |
+| [apple-design](apple-design/SKILL.md) | Designs and reviews Apple-platform UI against the Human Interface Guidelines and Liquid Glass |
+| [codex-worker-guide](codex-worker-guide/SKILL.md) | Dispatches one work order to a Codex CLI worker and reviews every line it returns |
+| [find-skills](find-skills/SKILL.md) | Finds similar skills, benchmarks how a skill is written, and prepares one for sharing |
+| [ip-design](ip-design/SKILL.md) | Designs an original mascot or IP character, from three directions to a full character sheet |
+| [ip-draw](ip-draw/SKILL.md) | Draws new images of a finished IP character that stay on model |
+| [mac-uninstall](mac-uninstall/SKILL.md) | Fully uninstalls a macOS app and audits the leftovers other uninstallers miss |
+
+Install any of them with `npx skills add max1874/skills --skill <name>`. Skills that ship with a tool live in that tool's repository: [open-agent-keys](https://github.com/max1874/open-agent-keys), [open-browser-use](https://github.com/max1874/open-browser-use), [open-computer-use](https://github.com/max1874/open-computer-use).
+
 ## deep-read
 
 **Makes an agent read a long source to the end, prove it, and actually understand what it says.**
@@ -104,6 +122,10 @@ skills 是一组公开的 Claude Code agent skill，都是我日常在用、在�
 **和同类的区别**：[full-output-enforcement](https://skills.sh/leonxlnx/taste-skill/full-output-enforcement) 防止 AI 写得比要求的少，`deep-read` 防止 AI 读得比给的少；[dsh-deepread](https://github.com/xiehuan123/dsh-deepread) 等「深度阅读」类 skill 套分析框架，`deep-read` 以读全、留证据为底线，在此之上按材料本身读懂它。
 
 **安装**：`npx skills add max1874/skills --skill deep-read`，或者把 `deep-read/` 文件夹复制到 `~/.claude/skills/`。需要 Node.js 22.18+，不用装任何包；处理 PDF 需要 poppler 里的 `pdftotext`。
+
+### 全部 skill
+
+除了下面详细介绍的 deep-read 和 handoff，还有 read-repo（完整读一个陌生仓库并留覆盖账本）、diagnose（先造出能复现的循环再查疑难 bug）、taste（设计界面的工作方法和质量底线）、apple-design（按 Apple 人机界面指南设计和审查）、codex-worker-guide（把一张工单派给 Codex 并逐行审）、find-skills（找同类 skill、对标写法、准备分享）、ip-design 和 ip-draw（设计原创 IP 形象并持续出图）、mac-uninstall（彻底卸载 macOS app 并审计残留）。安装：`npx skills add max1874/skills --skill <名字>`。随工具发布的 skill 在各自仓库里：open-agent-keys、open-browser-use、open-computer-use。
 
 ### handoff：交接时带上「为什么」，不只是「做了什么」
 

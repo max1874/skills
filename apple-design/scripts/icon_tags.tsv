@@ -1,0 +1,487 @@
+# Visual tags for the icon study, judged by eye from the contact sheets on 2026-10-21 (ours).
+# valid: icon | logo (homepage gave a web logo, not the app icon) | wrong (a different image: org avatar, other app, file icon)
+# shape: squircle (system mask or macOS 26 template) | freeform (legacy Mac silhouette) | circle
+# bg: solid | gradient | white | black | illus (scene or rendered illustration) | none (freeform)
+# glyph: letter | wordmark | text (CJK or words as the mark) | abstract | object | mascot
+# elements: distinct shapes in the mark; depth: flat | soft (shading, gentle gradient) | 3d (rendered material)
+# text: 1 when words or several letters appear; motif: what the mark depicts; pick: why it is a best pick
+key	name	valid	shape	bg	glyph	elements	depth	text	motif	pick
+appstore:1485191072	Douyin Mall - points back on orders, free return shipping	icon	squircle	gradient	mascot	3	3d	1	bag,face	
+appstore:407558537	Capital One Mobile	icon	squircle	white	abstract	1	flat	0	swoosh	
+appstore:1142110895	Douyin	icon	squircle	black	abstract	1	flat	0	note	
+appstore:6448311069	ChatGPT	icon	squircle	white	abstract	1	flat	0	knot	Monochrome knot on white: no colour at all and still instantly recognised
+appstore:6451407032	Hongguo Short Dramas - endless hit short dramas	icon	squircle	gradient	object	2	soft	1	play	
+appstore:632064380	Vinted: Pre-loved marketplace	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:544007664	YouTube	icon	squircle	white	object	1	flat	0	play	
+appstore:932747118	Shadowrocket	icon	squircle	white	object	1	flat	0	rocket	
+appstore:6745890963	Hongguo Comic Dramas - hit comic dramas	icon	squircle	gradient	object	1	flat	0	play	
+appstore:6760173601	Muse from Meta	icon	squircle	white	letter	1	flat	0	letter	
+appstore:414478124	WeChat	icon	squircle	solid	object	2	flat	0	bubble	Two overlapping bubbles, white on one owned green; the silhouette alone survives 29 px and tinted mode
+appstore:835599320	TikTok - Videos, Shop & LIVE	icon	squircle	black	abstract	1	flat	0	note	
+appstore:6459478672	Doubao - AI assistant for life and work	icon	squircle	gradient	mascot	1	3d	0	face	
+appstore:458318329	Tencent Video - Shen Teng returns in "Let's Go 4"	icon	squircle	illus	object	3	soft	1	play,campaign	
+appstore:1508186374	Peacock TV: Stream TV & Movies	icon	squircle	black	letter	2	flat	0	letter	
+appstore:294934058	HotSchedules	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:6466733523	Qwen - Alibaba AI assistant	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:6741796873	TikTok Pro - Events	icon	squircle	black	abstract	2	flat	0	note	
+appstore:414603431	QQ Music - hear what I want to hear	icon	squircle	white	object	2	flat	0	note	
+appstore:530168168	Paramount+	icon	squircle	gradient	abstract	2	flat	0	mountain	
+appstore:388624839	CamScanner - official 1-yuan edition, scan PDFs, text recognition	icon	squircle	black	letter	1	flat	0	letter	
+appstore:1605585211	Qishui Music - good songs anytime	icon	squircle	black	object	1	soft	0	note	
+appstore:6473753684	Claude by Anthropic	icon	squircle	solid	abstract	1	flat	0	starburst	One asterisk in one terracotta: a warm colour owns a category of blues and gradients
+appstore:1458072671	Jianying - Douyin's official AI creation tool	icon	squircle	black	abstract	1	flat	0	abstract	
+appstore:447188370	Snapchat	icon	squircle	solid	mascot	2	flat	0	ghost,campaign	Owned yellow plus a ghost outline; colour alone finds it on a crowded page
+appstore:1588080869	National Online Identity Authentication	icon	squircle	white	text	1	flat	1	text	
+appstore:922103212	McDonald's	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:333206289	Alipay - your AI life partner	icon	squircle	gradient	letter	2	flat	1	letter	
+appstore:389801252	Instagram	icon	squircle	gradient	object	1	flat	0	camera	
+appstore:6740246950	Huapi - local dating, maskless social, unwind barefaced	icon	squircle	black	object	2	soft	1	mask	
+appstore:1503466530	Xunlei - fast transfer, cloud drive, 4K originals	icon	squircle	gradient	object	1	flat	0	bird	
+appstore:6477489729	Google Gemini	icon	squircle	white	abstract	1	flat	0	sparkle	
+appstore:393765873	iQIYI - "The Great Long March" panoramic epic	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:954724812	Tonghuashun Premium - stock trading software	icon	squircle	gradient	object	2	soft	1	chart	
+appstore:373493387	AnkiMobile Flashcards	icon	squircle	gradient	abstract	2	soft	0	star	
+appstore:1488854568	CHSI (China Higher Education Student Information)	icon	squircle	white	object	1	flat	0	bird	
+appstore:6754134922	PineDrama - Short Dramas	icon	squircle	illus	mascot	1	3d	0	face	
+appstore:590338362	NetEase Cloud Music - hundreds of millions of songs	icon	squircle	solid	abstract	1	flat	0	note	One red note-disc mark on red: one idea, one colour
+appstore:1446075923	Disney+	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:600273928	UnionPay QuickPass - the banking industry's unified mobile payment app	icon	squircle	white	wordmark	3	flat	1	wordmark	
+appstore:1632713844	Kalshi: Trade Football & more	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:336141475	Youku - "Jia Jin Chai" streaming exclusively	icon	squircle	white	abstract	1	flat	0	play	
+appstore:6446901002	Threads	icon	squircle	black	letter	1	flat	0	letter	A single letterform, white on black
+appstore:1666653815	HBO Max: Stream Movies & TV	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:6741474933	Berry Film Camera - Korean-style selfie tool	icon	squircle	white	object	1	3d	0	object	
+appstore:414245413	JD.com - good and cheap	icon	squircle	gradient	mascot	3	3d	1	face,campaign	
+appstore:1500855883	CapCut: Photo & Video Editor	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:329913454	Crunchyroll	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:6468941332	Electronic Tax Bureau	icon	squircle	gradient	object	3	soft	1	shield	
+appstore:284815942	Google	icon	squircle	white	letter	1	flat	0	letter	
+appstore:472208016	Kugou Music - simply more songs	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:916366645	Procreate Pocket	icon	squircle	white	object	1	soft	0	brush	
+appstore:510909506	Xianyu - sell on Xianyu, make some money!	icon	squircle	solid	mascot	2	flat	1	face,wordmark	
+appstore:983156458	Microsoft Authenticator	icon	squircle	white	object	1	soft	0	lock,shield,person	
+appstore:887314963	BOSS Zhipin - recruiting and job search	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:288429040	LinkedIn: Community & Network	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:518966501	Tmall - good brands, good prices	icon	squircle	solid	mascot	2	flat	1	face,campaign	
+appstore:310633997	WhatsApp Messenger	icon	squircle	solid	object	1	flat	0	bubble,phone	
+appstore:768160271	Umetrip PRO - official civil aviation direct sales	icon	squircle	solid	letter	2	flat	1	letter	
+appstore:422689480	Gmail - Email by Google	icon	squircle	white	letter	1	flat	0	letter,envelope	
+appstore:1017492454	YouTube Music	icon	squircle	white	object	1	flat	0	play	
+appstore:1600873673	Tantan Vocabulary | CET-4/6 and postgraduate English words	icon	squircle	white	letter	1	soft	0	letter	
+appstore:6800616114	play_music_theory	icon	squircle	white	object	3	flat	0	abstract	
+appstore:6756863766	Doushengsheng - Douyin's official group-buying platform	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:384830320	Life360: Family Safety & GPS	icon	squircle	gradient	abstract	1	flat	0	signal,campaign	
+appstore:1261944766	Alook Browser - 8x speed	icon	squircle	white	letter	1	flat	0	letter	
+appstore:497716362	TonalEnergy Tuner & Metronome	icon	squircle	illus	object	1	3d	0	dial	
+appstore:6761374913	WorkBuddy - AI office helper	icon	squircle	solid	mascot	1	flat	0	face	
+appstore:1641486558	Temu: Shop Like a Billionaire	icon	squircle	solid	wordmark	2	flat	1	wordmark	
+appstore:6775828757	New World: Twin Shadows	icon	squircle	illus	text	1	3d	1	text	
+appstore:1160172628	Quark - flagship AI app	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:585027354	Google Maps	icon	squircle	white	object	1	flat	0	pin	
+appstore:736536022	Bilibili - danmaku, anime, live, HD video	icon	squircle	solid	wordmark	2	flat	1	wordmark,campaign	
+appstore:6743148949	Glorious Realm: The Queen's Game	icon	squircle	illus	mascot	1	3d	0	portrait	
+appstore:583700738	China Mobile (mobile service hall)	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:1113153706	Microsoft Teams	icon	squircle	white	object	2	soft	0	people	
+appstore:547166701	Baidu Netdisk	icon	squircle	white	abstract	1	flat	0	cloud	
+appstore:387682726	Taobao - Taobao has everything!	icon	squircle	solid	letter	2	flat	1	letter,campaign	
+appstore:518684914	Depop - Buy & Sell Clothes	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:284035177	Pandora: Personalized Music	icon	squircle	white	letter	1	flat	0	letter	
+appstore:1044283059	Pinduoduo - grocery shopping, ten-billion subsidies	icon	squircle	solid	mascot	3	soft	1	campaign	
+appstore:1223471316	Shop: Track, Pay, Discover	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:284882215	Facebook	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:1303222868	Paprika Recipe Manager 3	icon	squircle	white	object	1	3d	1	tin	
+appstore:1039727169	Traffic Management 12123	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:6767364919	Trump Accounts: Official App	icon	squircle	white	object	2	3d	0	bars	
+appstore:389781154	NFL	icon	squircle	solid	object	2	flat	1	shield,emblem	
+appstore:1500526240	Xingtu - all-in-one photo editor	icon	squircle	black	abstract	1	soft	0	circle	
+appstore:570060128	Duolingo English Japanese French	icon	squircle	solid	mascot	1	flat	0	face	Mascot reduced to a face, two eyes and a beak; still reads at 29 px
+appstore:461703208	Amap - ride hailing, navigation, transit	icon	squircle	white	object	1	soft	0	arrow	
+appstore:440948110	Kuaishou	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:1439723850	Time Planning Bureau - countdowns and reminders	icon	squircle	black	object	1	flat	0	clock	
+appstore:338137227	Walmart: Shopping & Savings	icon	squircle	solid	abstract	1	flat	0	starburst	
+appstore:6670324846	Grok AI	icon	squircle	black	abstract	1	soft	0	abstract	
+appstore:416048305	Meitu: video/photo/Live portrait retouching	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:547702041	Tinder Dating App: Date & Chat	icon	squircle	solid	object	1	flat	0	flame	One flame on its own red-pink
+appstore:1164801111	AutoSleep - Apple Watch sleep tracking, sleep log and smart alarm	icon	squircle	black	object	1	flat	0	moon	A moon and nothing else on near-black
+appstore:405835358	MilGPS	icon	squircle	solid	text	2	soft	1	text	
+appstore:545519333	Amazon Prime Video	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:1661419573	atvTools	icon	squircle	white	object	2	flat	0	device,arrow	
+appstore:6796775271	Stay On Target 1138	icon	squircle	solid	object	1	soft	0	pattern	
+appstore:741292507	Xiaohongshu (RedNote) - your lifestyle community	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:962194608	Google Photos: Backup & Edit	icon	squircle	white	abstract	1	flat	0	pinwheel	
+appstore:6793744610	2AM CAM	icon	squircle	black	wordmark	1	flat	1	wordmark	
+appstore:1012871328	Dewu (Poizon) - get good things	icon	squircle	black	wordmark	2	flat	1	wordmark,campaign	
+appstore:297606951	Amazon Shopping	icon	squircle	solid	object	2	flat	0	box	
+appstore:379693831	Audible: Audiobooks & Podcasts	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:1002355194	Zhuanzhuan - officially inspected second-hand	icon	squircle	white	mascot	2	soft	1	face	
+appstore:686449807	Telegram Messenger	icon	squircle	white	object	1	soft	0	plane	One glyph (paper plane) in a disc; the plane says send, not chat
+appstore:897446215	Canva AI Photo & Video Editor	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:6766922910	Wufan Arcade - classic games collection	icon	squircle	solid	mascot	1	soft	0	face	
+appstore:535886823	Google Chrome	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:672902340	onX Hunt: GPS Hunting Maps	icon	squircle	solid	object	1	flat	0	cross	
+appstore:564818797	China Railway 12306	icon	squircle	gradient	object	2	flat	1	emblem	
+appstore:6745274862	DealSeek: Coupons & Discounts	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:539988420	Taqu - take the first step and there's a story	icon	squircle	illus	mascot	2	3d	0	face	
+appstore:376510438	Hulu: Stream TV shows & movies	icon	squircle	black	wordmark	1	flat	1	wordmark	
+appstore:423084029	Meituan - ask Meituan, it's all arranged	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:1488269261	Whatnot: Shop, Sell, Connect	icon	squircle	black	letter	1	flat	0	letter	
+appstore:629774477	Mango TV	icon	squircle	solid	letter	2	flat	1	letter,campaign	
+appstore:327630330	Dropbox: Cloud Storage Backup	icon	squircle	solid	object	1	flat	0	box	
+appstore:473225145	QQ Mail	icon	squircle	gradient	object	1	soft	0	envelope	
+appstore:1636235979	ReelShort - Stream Drama & TV	icon	squircle	gradient	letter	2	flat	1	letter	
+appstore:1010311475	QuickBend: Conduit Bending	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:1087897068	WeCom	icon	squircle	white	object	2	flat	0	bubble	
+appstore:333903271	X	icon	squircle	black	letter	1	flat	0	letter	
+appstore:6781949759	Haonvzi	icon	squircle	white	text	1	soft	1	text	
+appstore:319881193	Grindr - Gay Dating & Chat	icon	squircle	black	mascot	1	flat	0	mask	
+appstore:586149216	Monash FODMAP Diet	icon	squircle	solid	object	2	flat	0	organ	
+appstore:444934666	QQ	icon	squircle	white	mascot	1	soft	0	penguin	
+appstore:382952264	MyChart	icon	squircle	white	object	2	soft	0	folder,heart	
+appstore:963034692	Streaks	icon	squircle	solid	letter	1	soft	0	letter,ring	
+appstore:515651240	Agricultural Bank of China	icon	squircle	white	object	1	flat	0	emblem	
+appstore:324684580	Spotify: Music and Podcasts	icon	squircle	black	abstract	1	flat	0	waves	Three arcs in a disc; green on black reads from across a room
+appstore:1095903651	[Daoliaoma] - offline dating, karaoke, movies, escape rooms...	icon	squircle	solid	mascot	1	flat	0	face	
+appstore:423514795	Industrial and Commercial Bank of China	icon	squircle	solid	object	1	flat	0	emblem	
+appstore:309735670	Indeed Job Search	icon	squircle	white	letter	1	flat	0	letter	
+appstore:582584117	Solocator - GPS Field Camera	icon	squircle	illus	object	2	3d	1	compass	
+appstore:513829338	Damai - movie, show and sports tickets	icon	squircle	white	abstract	1	flat	0	petals	
+appstore:1673567402	Freecash - Get Paid Real Money	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:1149994032	Facetune: Photo & Video Editor	icon	squircle	white	mascot	1	soft	0	face	
+appstore:6449003064	Goblin Tools	icon	squircle	solid	mascot	1	3d	0	face	
+appstore:586871187	UC Browser - search freely, watch smoothly	icon	squircle	solid	mascot	1	flat	0	squirrel	
+appstore:382497397	Sam's Club Shopping & Delivery	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:1625289361	Air Basketball	icon	squircle	white	object	1	flat	0	hand	
+appstore:1436002627	Individual Income Tax	icon	squircle	gradient	object	2	flat	1	shield	
+appstore:6768593043	BlinkDrama - Short Dramas	icon	squircle	black	letter	2	flat	0	letter	
+appstore:6448477521	BiuBiuBiu - air gun	icon	squircle	white	object	1	3d	0	hand	
+appstore:1484048379	Tencent Meeting - multi-person real-time video meetings	icon	squircle	solid	abstract	1	flat	0	mountain	
+appstore:368677368	Uber - Rides, Eats, Hotels	icon	squircle	black	wordmark	1	flat	1	wordmark	
+appstore:341232718	MyFitnessPal: Calorie Counter	icon	squircle	solid	object	1	flat	0	figure	
+appstore:599852710	WPS Office - smart AI office assistant	icon	squircle	white	letter	1	flat	0	letter	
+appstore:711923939	Cash App	icon	squircle	solid	object	1	flat	0	dollar	The glyph is the category: a dollar sign on owned green
+appstore:787130974	Migu Video - watch CBA on Migu	icon	squircle	white	letter	2	flat	1	letter,campaign	
+appstore:6445905219	DramaBox - Stream Drama Shorts	icon	squircle	gradient	object	1	flat	0	play	
+appstore:578665578	Threema. The Secure Messenger	icon	squircle	black	object	3	flat	0	bubble,lock,dots	Secure messaging said once: a bubble with a lock, white on black; the three dots are its signature
+appstore:1319071502	Today Watermark Camera - time, place, coordinates check-in photos	icon	squircle	solid	text	2	flat	1	text,camera	
+appstore:719972451	DoorDash: Food, Grocery, More	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:876336838	Ximalaya "audiobook community" radio, audio novels, crosstalk, storytelling	icon	squircle	solid	text	1	flat	1	text	
+appstore:595287172	Hinge Dating App: Match & Date	icon	squircle	white	letter	1	flat	0	letter	
+appstore:507097717	Alibaba (1688) - wholesale sourcing marketplace	icon	squircle	solid	wordmark	2	flat	1	wordmark	
+appstore:283646709	PayPal - Pay, Send, Save	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:388627783	CamScanner - phone scanner & PDF image to text	icon	squircle	black	letter	1	flat	0	letter	
+appstore:985746746	Discord - Talk, Play, Hang Out	icon	squircle	gradient	mascot	1	flat	0	face,bubble	
+appstore:404990064	SkyView®	icon	squircle	illus	object	1	soft	0	stars	
+appstore:1490383593	National Healthcare Security Service Platform	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:500003565	Ticketmaster - Buy, Sell Tickets	icon	squircle	gradient	letter	1	flat	0	letter	
+appstore:1510944943	Cleanup: Phone Storage Cleaner	icon	squircle	gradient	abstract	2	soft	0	sparkle	
+appstore:357421934	PeakFinder	icon	squircle	white	object	1	flat	0	mountain	
+appstore:546505307	Zoom Workplace	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:460177396	Twitch: Live Streaming	icon	squircle	solid	object	1	flat	0	bubble	
+appstore:807317212	Daily Picks - astronomy, geography, culture, nature & photography	icon	squircle	white	abstract	1	flat	0	ring	
+appstore:391965015	China Construction Bank	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:1089294040	Capital One Shopping: Save Now	icon	squircle	white	object	2	flat	1	cart,wordmark	
+appstore:1126393139	Werewolf	icon	squircle	illus	mascot	2	3d	1	face	
+appstore:1531467766	ViX: TV, Sports and News	icon	squircle	gradient	wordmark	1	flat	1	wordmark	
+appstore:6812654698	Copy Manga - Kaobei Manga	icon	squircle	gradient	object	1	soft	1	atom,campaign	
+appstore:432850619	FL Studio Mobile	icon	squircle	black	object	1	3d	0	fruit	
+appstore:6670430706	DramaWave - Dramas & Reels	icon	squircle	gradient	object	1	flat	0	play	
+appstore:1502936453	LADDER Strength Training Plans	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:373454750	Suishouji Pro - personal, family and business bookkeeping	icon	squircle	white	text	1	soft	1	text	
+appstore:1400579543	imo video calls and chat HD	icon	squircle	white	wordmark	1	flat	1	wordmark,bubble	
+appstore:350962117	Weibo	icon	squircle	white	object	1	soft	0	eye	
+appstore:1477031443	Douyin Lite	icon	squircle	black	abstract	2	flat	0	note	
+appstore:1308415878	GameChanger	icon	squircle	black	letter	1	flat	0	letter	
+appstore:429047995	Pinterest	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:6572296119	Tipsy: Live Your Story	icon	squircle	gradient	mascot	1	soft	0	face	
+appstore:351091731	Dianping - food and fun guide	icon	squircle	solid	object	1	flat	0	figure	
+appstore:510855668	Amazon Music: Songs & Podcasts	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+appstore:1464850921	Daily English Reading	icon	squircle	white	object	1	flat	0	document	
+appstore:317809458	LiveATC Air Radio	icon	squircle	gradient	object	1	flat	0	tower	
+appstore:1472502819	Kuaishou Lite	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:351727428	Venmo	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:1032287195	Soul - young people's social metaverse	icon	squircle	black	wordmark	1	soft	1	wordmark	
+appstore:6814210373	Auday - all-day AI recording on Watch	icon	squircle	black	abstract	1	flat	0	waves	
+appstore:930368978	DingTalk	icon	squircle	solid	object	1	flat	0	bird	
+appstore:507874739	Google Drive	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:432274380	Zhihu	icon	squircle	solid	text	1	flat	1	text	
+appstore:1111876388	T-Life	icon	squircle	solid	letter	1	flat	1	letter	
+appstore:6760693468	Sorry, I'm a Cop	icon	squircle	black	wordmark	2	soft	1	wordmark	
+appstore:1448831879	Diantao - Taobao Live official app	icon	squircle	solid	wordmark	2	flat	1	wordmark,tv	
+appstore:842842640	Google Docs	icon	squircle	white	object	1	flat	0	document	
+appstore:1459749978	List Vocabulary	icon	squircle	gradient	letter	1	3d	0	letter	
+appstore:1435602536	Duoshan	icon	squircle	gradient	object	1	flat	0	bubble	
+appstore:6761538521	StoryReel: Drama Shorts & TV	icon	squircle	black	object	1	flat	0	play	
+appstore:1093423753	Leisu Sports - live football, basketball and sports events	icon	squircle	solid	text	2	flat	1	text,bolt	
+appstore:6822356428	Wanji - watch voice recorder, speech to text	icon	squircle	black	object	2	soft	0	waves,arrow	
+appstore:6737597349	DeepSeek - AI assistant	icon	squircle	white	mascot	1	flat	0	whale	
+appstore:6751921248	Rips by Triumph	icon	squircle	black	object	1	3d	0	frame	
+appstore:1180884341	FaceApp: Perfect Face Editor	icon	squircle	white	abstract	1	soft	0	abstract	
+appstore:949490225	Print to Size	icon	squircle	white	object	1	3d	0	printer	
+appstore:1399446592	The Zeus Network	icon	squircle	solid	object	1	flat	0	bolt	
+appstore:382201985	Baidu - AI search	icon	squircle	white	wordmark	2	flat	1	paw,wordmark	
+appstore:6810281811	Wukong Arcade - Wufan classic emulator	icon	squircle	solid	mascot	1	soft	0	face	
+appstore:554499054	DiDi - rides, bikes, carpools, train tickets, rentals, designated drivers, delivery	icon	squircle	white	letter	1	flat	0	letter	
+appstore:6448849666	Bible Chat: Daily Devotional	icon	squircle	gradient	object	1	soft	0	cross	
+appstore:364876095	Jump Desktop (RDP, VNC, Fluid)	icon	squircle	gradient	object	2	flat	0	cloud,figure	
+appstore:6753982990	AI Maker: Photo Video Filters	icon	squircle	black	abstract	1	3d	0	orb	
+appstore:336353151	SoundCloud: Discover New Music	icon	squircle	solid	abstract	1	flat	0	waves,cloud	
+appstore:1662217862	Wipr 2	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:399608199	Bank of China	icon	squircle	solid	object	1	flat	0	emblem	
+appstore:951937596	Microsoft Outlook	icon	squircle	white	object	1	3d	0	envelope	
+appstore:930441707	Bumble Dating App: Meet & Date	icon	squircle	solid	abstract	1	flat	0	abstract	
+appstore:513836029	China Telecom - official nationwide service platform	icon	squircle	white	object	1	flat	0	emblem	
+appstore:895682747	JD Finance - gold, funds, wealth, loans, insurance in one place	icon	squircle	illus	mascot	1	3d	0	dog	
+appstore:1662982304	Partiful: Party Invite Maker	icon	squircle	black	letter	1	flat	0	letter	
+appstore:1288415553	The Official Wyze App	icon	squircle	black	letter	1	flat	0	letter	
+appstore:1182474649	Fetch: Earn Rewards Every Day	icon	squircle	solid	mascot	1	flat	0	dog	
+appstore:6503676563	Jimeng AI - Douyin's AI image and video tool	icon	squircle	illus	mascot	1	3d	0	figure	
+appstore:459313476	Tenuto	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:370139302	QQ Browser - Tencent AI browser	icon	squircle	white	abstract	1	soft	0	abstract	
+appstore:6738967378	Edits: Video Editor	icon	squircle	black	letter	1	soft	0	letter	
+appstore:570608623	Tencent Sports	icon	squircle	white	object	2	flat	1	ball,wordmark	
+appstore:480079300	58.com - jobs, housekeeping, rentals, used homes and cars	icon	squircle	white	wordmark	2	flat	1	wordmark,campaign	
+appstore:1605170923	GoWish - Your Digital Wishlist	icon	squircle	solid	object	1	flat	0	cloud	
+appstore:6749500972	Bika Mandao - anime-style Japanese and Korean comics	icon	squircle	illus	mascot	2	soft	1	face	
+appstore:490179405	Okta Verify	icon	squircle	white	object	1	flat	0	check	
+appstore:284862083	NYTimes: US and World News	icon	squircle	white	letter	1	flat	0	letter	
+appstore:6796376003	VNPlayer - visual novel emulator	icon	squircle	white	letter	1	flat	0	letter	
+appstore:1581140954	Noir - Dark Mode for Safari	icon	squircle	gradient	object	1	soft	0	moon	
+appstore:6755949705	Quark Netdisk - lossless Live Photos, fast, ad-free	icon	squircle	white	object	1	soft	0	cloud	
+appstore:1102305688	Honor of Kings Camp	icon	squircle	gradient	abstract	1	flat	0	abstract	
+appstore:426826309	Strava: Run, Bike, Walk	icon	squircle	solid	letter	1	flat	0	letter	
+appstore:1468454200	Fanqie Novel - comic dramas and complete novels e-reader	icon	squircle	solid	object	1	flat	0	tomato	
+appstore:1064216828	Reddit	icon	squircle	solid	mascot	1	flat	0	face	
+appstore:1668000334	Perplexity - AI Search & Chat	icon	squircle	black	abstract	1	flat	0	abstract	
+appstore:1152396902	Phoenix News Pro	icon	squircle	white	abstract	1	flat	0	abstract	
+appstore:298206806	iReal Pro	icon	squircle	gradient	abstract	1	flat	0	abstract	
+appstore:6473782436	Wukong Browser - short dramas, novels, film	icon	squircle	solid	mascot	1	3d	0	face	
+appstore:1410234033	Shell: Fuel, Charge & More	icon	squircle	white	object	1	flat	0	shell	
+outside:docker-desktop	Docker Desktop	logo									
+outside:visual-studio-code	Microsoft Visual Studio Code	icon	squircle	white	abstract	1	soft	0	ribbon	
+outside:google-chrome	Google Chrome	icon	squircle	white	abstract	1	soft	0	abstract	
+outside:libreoffice	LibreOffice	icon	freeform	none	object	1	3d	0	document	
+outside:ghostty	Ghostty	icon	squircle	black	object	2	3d	0	terminal,ghost	A terminal window with a ghost inside: object and character as one silhouette, in the macOS 26 squircle
+outside:iterm2	iTerm2	icon	freeform	black	object	1	soft	0	terminal	
+outside:claude	Claude	icon	squircle	solid	abstract	1	flat	0	starburst	
+outside:obsidian	Obsidian	icon	squircle	black	abstract	1	3d	0	gem	A faceted gem on black; the depth is the brand
+outside:orbstack	OrbStack	icon	squircle	white	abstract	1	3d	0	orb	One glass orb: material depth used once
+outside:cc-switch	CC Switch	icon	squircle	white	abstract	1	flat	0	starburst	
+outside:firefox	Mozilla Firefox	logo									
+outside:tailscale-app	Tailscale	icon	squircle	black	abstract	1	flat	0	dots	
+outside:codexbar	CodexBar	icon	squircle	black	object	1	flat	0	terminal	
+outside:stats	Stats	icon	squircle	black	object	1	soft	0	waves	
+outside:postman	Postman	logo									
+outside:warp	Warp	icon	squircle	black	abstract	1	flat	0	abstract	
+outside:dbeaver-community	DBeaver Community Edition	icon	circle	white	mascot	1	soft	0	beaver	
+outside:android-studio	Android Studio	logo									
+outside:cursor	Cursor	icon	squircle	black	abstract	1	soft	0	cube	
+outside:raycast	Raycast	icon	squircle	black	abstract	1	soft	1	ribbon	
+outside:rectangle	Rectangle	icon	squircle	gradient	object	2	soft	0	window	
+outside:zed	Zed	icon	squircle	black	letter	1	flat	0	letter	A letterform on black, zero decoration
+outside:maccy	Maccy	icon	squircle	gradient	object	1	soft	0	feather	
+outside:spotify	Spotify	icon	squircle	black	abstract	1	flat	0	waves	
+outside:brave-browser	Brave	logo									
+outside:chatgpt	ChatGPT	icon	squircle	white	abstract	1	flat	0	knot	
+outside:blender	Blender	icon	squircle	black	abstract	1	soft	0	abstract	
+outside:ollama-app	Ollama	logo									
+outside:opencode-desktop	OpenCode	icon	squircle	solid	abstract	1	flat	0	frame	
+outside:slack	Slack	icon	squircle	white	abstract	1	flat	0	hash	
+outside:iina	IINA	wrong									
+outside:utm	UTM	icon	squircle	solid	abstract	1	flat	0	squares	
+outside:localsend	LocalSend	icon	squircle	white	abstract	2	flat	0	ring	
+outside:zoom	Zoom	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+outside:sublime-text	Sublime Text	logo									
+outside:antigravity	Google Antigravity	logo									
+outside:whatsapp	WhatsApp	icon	squircle	solid	object	1	flat	0	bubble,phone	
+outside:cmux	cmux	icon	squircle	white	abstract	1	soft	0	chevron	
+outside:notion	Notion	icon	squircle	white	letter	1	flat	0	letter	An N block, ink on paper-white: the closest exemplar to an ink-on-paper palette
+outside:1password	1Password	icon	squircle	white	letter	2	3d	0	keyhole,lock	
+outside:karabiner-elements	Karabiner Elements	wrong									
+outside:bitwarden	Bitwarden	icon	squircle	solid	object	1	flat	0	shield	
+outside:lm-studio	LM Studio	icon	squircle	gradient	abstract	1	flat	0	lines	
+outside:hammerspoon	Hammerspoon	icon	squircle	solid	object	1	soft	0	hammer	
+outside:microsoft-edge	Microsoft Edge	wrong									
+outside:kitty	kitty	wrong									
+outside:pgadmin4	pgAdmin4	icon	freeform	none	mascot	1	flat	0	elephant	
+outside:db-browser-for-sqlite	DB Browser for SQLite	icon	freeform	none	object	1	3d	0	database	
+outside:drawio	draw.io Desktop	icon	squircle	solid	object	1	flat	0	diagram	
+outside:obs	OBS	icon	squircle	black	abstract	1	soft	0	abstract	
+outside:chromium	Chromium	logo									
+outside:codex-app	Codex	logo									
+outside:steam	Steam	icon	squircle	gradient	abstract	1	soft	0	abstract	
+outside:microsoft-teams	Microsoft Teams	wrong									
+outside:telegram	Telegram for macOS	icon	squircle	white	object	1	soft	0	plane	
+outside:linearmouse	LinearMouse	icon	squircle	solid	object	1	soft	0	mouse	
+outside:openclaw	OpenClaw	icon	squircle	white	mascot	1	soft	0	crab	
+outside:keka	Keka	icon	freeform	none	object	1	3d	0	box	
+outside:pearcleaner	Pearcleaner	icon	squircle	white	object	1	3d	0	fruit	
+outside:figma	Figma	icon	squircle	black	abstract	1	flat	0	abstract	
+outside:godot	Godot Engine	icon	freeform	none	mascot	1	flat	0	robot	
+outside:podman-desktop	Podman Desktop	icon	squircle	black	abstract	1	soft	0	seal	
+outside:vorssaint	Vorssaint	wrong									
+outside:whisky	Whisky	icon	squircle	gradient	object	1	soft	0	glass	
+outside:vscodium	VSCodium	wrong									
+outside:mos	Mos	icon	squircle	black	abstract	1	soft	0	swirl	
+outside:balenaetcher	Etcher	icon	freeform	none	object	1	3d	0	cube	
+outside:qlmarkdown	sbarex QLMarkdown	icon	squircle	black	object	1	flat	0	eye	
+outside:intellij-idea	IntelliJ IDEA Ultimate	logo									
+outside:monitorcontrol	MonitorControl	icon	squircle	black	object	2	soft	0	display,sun	
+outside:signal	Signal	icon	squircle	white	object	1	flat	0	bubble	
+outside:dockdoor	DockDoor	icon	squircle	gradient	mascot	1	soft	0	face,window	
+outside:cyberduck	Cyberduck	icon	freeform	none	mascot	1	soft	0	duck	
+outside:rustdesk	RustDesk	icon	squircle	white	abstract	1	flat	0	ring	
+outside:windows-app	Windows App	icon	squircle	white	abstract	1	soft	0	windows	
+outside:tableplus	TablePlus	icon	squircle	white	mascot	1	soft	0	elephant	
+outside:audacity	Audacity	icon	circle	black	object	2	flat	0	headphones,waves	
+outside:swiftbar	SwiftBar	icon	squircle	black	letter	2	flat	0	dollar	
+outside:rancher	Rancher Desktop	icon	squircle	solid	object	1	flat	0	abstract	
+outside:arc	Arc	icon	squircle	white	abstract	1	soft	0	arc	A single arc on white; the shape is the name
+outside:thaw	Thaw	wrong									
+outside:zen	Zen Browser	icon	squircle	black	abstract	1	flat	0	rings	
+outside:hiddenbar	Hidden Bar	icon	circle	white	abstract	1	flat	0	chevron	
+outside:keepassxc	KeePassXC	icon	squircle	white	object	2	soft	0	key,lock	
+outside:transmission	Transmission	icon	freeform	none	object	1	3d	0	box,arrow	
+outside:jetbrains-toolbox	JetBrains Toolbox	logo									
+outside:openmtp	OpenMTP	icon	squircle	white	abstract	1	flat	0	ring	
+outside:openscad	OpenSCAD	icon	freeform	none	object	1	3d	0	sphere	
+outside:alacritty	Alacritty	wrong									
+outside:gemini	Gemini	logo									
+outside:meld	Meld for macOS	wrong									
+outside:alfred	Alfred	icon	freeform	none	object	2	3d	0	hat	
+outside:ungoogled-chromium	Ungoogled Chromium	logo									
+outside:unity-hub	Unity Hub	logo									
+outside:the-unarchiver	The Unarchiver	icon	freeform	none	object	1	3d	0	box	
+outside:sequel-ace	Sequel Ace	icon	squircle	solid	object	1	3d	0	database	
+outside:virtualbox	Oracle VirtualBox	logo									
+outside:mark-text	MarkText	wrong									
+outside:handbrake-app	HandBrake	icon	freeform	none	object	2	3d	0	fruit	
+outside:scroll-reverser	Scroll Reverser	icon	squircle	gradient	object	1	soft	0	arrow	
+outside:xcodes-app	Xcodes	icon	freeform	none	object	1	3d	0	toolbox	
+outside:tor-browser	Tor Browser	wrong									
+outside:bluebubbles	BlueBubbles	icon	freeform	none	object	1	soft	0	bubble,dots	
+outside:flameshot	Flameshot	icon	circle	gradient	object	1	flat	0	flame	
+outside:intellij-idea-ce	IntelliJ IDEA Community Edition	logo									
+outside:wechat	WeChat for Mac	icon	squircle	solid	object	2	flat	0	bubble	
+outside:finetune	FineTune	icon	squircle	black	object	1	soft	0	disc,waves	
+outside:thunderbird	Mozilla Thunderbird	icon	freeform	none	mascot	1	soft	0	bird,envelope	
+outside:microsoft-excel	Microsoft Excel	icon	squircle	white	letter	1	soft	0	letter	
+outside:onedrive	OneDrive	wrong									
+outside:aldente	AlDente	icon	squircle	gradient	object	1	soft	0	plug	
+outside:microsoft-word	Microsoft Word	icon	squircle	white	letter	1	soft	0	letter	
+outside:openlogi	OpenLogi	icon	squircle	black	letter	1	soft	0	letter	
+outside:markedit	MarkEdit	wrong									
+outside:zotero	Zotero	icon	squircle	white	letter	1	soft	0	letter	
+outside:coteditor	CotEditor	icon	squircle	solid	object	1	soft	0	pen	
+outside:lulu	LuLu	icon	squircle	white	object	1	soft	0	shield	
+outside:pycharm	PyCharm	logo									
+outside:macdown	MacDown	icon	squircle	solid	letter	2	flat	0	letter,arrow	
+outside:openlens	OpenLens	wrong									
+outside:google-gemini	Gemini	logo									
+outside:vivaldi	Vivaldi	icon	squircle	solid	letter	1	flat	0	letter	
+outside:notunes	noTunes	icon	squircle	solid	object	1	flat	0	note,prohibit	
+outside:puremac	PureMac	icon	squircle	solid	object	1	soft	0	display	
+outside:whatcable	WhatCable	wrong									
+outside:clash-verge-rev	Clash Verge Rev	icon	circle	gradient	mascot	1	soft	0	cat	
+outside:insomnia	Insomnia	logo									
+outside:freelens	Freelens	icon	squircle	solid	abstract	1	flat	0	aperture	
+outside:redis-insight	Redis Insight	icon	squircle	solid	letter	1	flat	0	letter	
+outside:github-copilot-for-xcode	GitHub Copilot for Xcode	icon	squircle	solid	mascot	1	soft	0	robot	
+outside:handy	Handy	icon	squircle	solid	mascot	1	soft	0	hand	
+outside:helium-browser	Helium	icon	squircle	solid	abstract	1	flat	0	asterisk	
+outside:moonlight	Moonlight	icon	circle	black	object	1	soft	0	moon	
+outside:termius	Termius	icon	squircle	black	object	1	flat	0	cloud,terminal	
+outside:microsoft-outlook	Microsoft Outlook	icon	squircle	white	letter	2	3d	0	letter,envelope	
+outside:chatgpt-atlas	ChatGPT Atlas	logo									
+outside:keepingyouawake	KeepingYouAwake	icon	squircle	white	object	1	soft	0	cup	
+outside:proxyman	Proxyman	icon	squircle	solid	mascot	1	3d	0	astronaut	
+outside:grandperspective	GrandPerspective	icon	squircle	black	abstract	1	soft	0	squares	
+outside:microsoft-powerpoint	Microsoft PowerPoint	icon	squircle	white	letter	2	3d	0	letter	
+outside:syncthing-app	Syncthing	icon	squircle	solid	abstract	1	flat	0	nodes	
+outside:t3-code	T3 Code	icon	freeform	none	abstract	1	flat	0	triangle	
+outside:onyx	OnyX	logo									
+outside:another-redis-desktop-manager	Another Redis Desktop Manager	icon	squircle	solid	object	1	flat	0	star	
+outside:affinity	Affinity	icon	squircle	solid	letter	1	flat	0	letter	
+outside:maestro	Maestro	icon	squircle	solid	object	1	flat	0	wand	
+outside:keycastr	KeyCastr	wrong									
+outside:mac-mouse-fix	Mac Mouse Fix	icon	squircle	white	object	1	soft	0	mouse	
+outside:teamviewer	TeamViewer	logo									
+outside:macs-fan-control	Macs Fan Control	logo									
+outside:nordvpn	NordVPN	icon	squircle	solid	wordmark	2	flat	1	wordmark,mountain	
+outside:bettertouchtool	BetterTouchTool	icon	squircle	black	abstract	1	soft	0	abstract	
+outside:caskhub	CaskHub	icon	squircle	gradient	object	1	soft	0	barrel	
+outside:kiro	kiro	icon	squircle	solid	mascot	2	flat	0	ghost	
+outside:typora	Typora	icon	squircle	white	letter	1	soft	0	letter	
+outside:upscayl	Upscayl	icon	squircle	solid	abstract	1	soft	0	split	
+outside:wailbrew	WailBrew	icon	freeform	none	mascot	1	3d	0	whale	
+outside:fluidvoice	FluidVoice	icon	squircle	black	letter	1	soft	0	letter	
+outside:wave	Wave Terminal	icon	freeform	none	abstract	1	soft	0	wave	
+outside:tabby	Tabby	icon	squircle	black	object	1	flat	0	chevron,terminal	
+outside:clipy	Clipy	icon	squircle	solid	wordmark	1	flat	1	wordmark	
+outside:duckduckgo	DuckDuckGo	logo									
+outside:burp-suite	Burp Suite Community Edition	icon	squircle	solid	object	1	flat	0	bolt	
+outside:block-goose	Goose	icon	squircle	white	object	1	flat	0	bird	
+outside:itsycal	Itsycal	icon	circle	white	mascot	1	flat	0	face	
+outside:espanso	Espanso	icon	freeform	none	letter	1	flat	0	letter	
+outside:wispr-flow	Wispr Flow	icon	squircle	black	abstract	1	flat	0	waves	
+outside:lens	Lens	icon	squircle	solid	abstract	1	flat	0	aperture	
+outside:datagrip	DataGrip	logo									
+outside:telegram-desktop	Telegram Desktop	icon	squircle	white	object	1	soft	0	plane	
+outside:homebrew-app	Homebrew	wrong									
+outside:lunar	Lunar	icon	squircle	solid	object	1	soft	0	moon	
+outside:opensuperwhisper	OpenSuperWhisper	wrong									
+outside:easydict	Easydict	icon	squircle	white	object	2	flat	1	bubble,letter	
+outside:nextcloud	Nextcloud	logo									
+outside:middleclick	MiddleClick	icon	squircle	black	abstract	1	flat	0	dots	
+outside:opera	Opera	logo									
+outside:arduino-ide	Arduino IDE	logo									
+outside:amethyst	Amethyst	icon	squircle	gradient	abstract	1	soft	0	gem	
+outside:onlyoffice	ONLYOFFICE	logo									
+outside:battery	Battery	wrong									
+outside:beekeeper-studio	Beekeeper Studio	logo									
+outside:antigravity-ide	Google Antigravity IDE	logo									
+outside:bartender	Bartender	icon	squircle	black	object	1	3d	0	tuxedo	
+outside:unnaturalscrollwheels	UnnaturalScrollWheels	icon	freeform	none	object	1	soft	0	mouse	
+outside:cherry-studio	Cherry Studio	icon	squircle	solid	abstract	1	flat	0	abstract	
+outside:superwhisper	Superwhisper	icon	squircle	black	abstract	1	3d	0	triangle	
+outside:voiceink	VoiceInk	icon	squircle	black	object	1	soft	0	microphone	
+outside:supacode	supacode	icon	squircle	black	letter	1	flat	0	letter	
+outside:daisydisk	DaisyDisk	icon	freeform	none	object	1	3d	0	disk	
+outside:zap	Zed Attack Proxy	icon	circle	solid	object	1	soft	0	bolt	
+outside:keyclu	KeyClu	icon	squircle	white	abstract	1	flat	0	abstract	
+outside:pycharm-ce	Jetbrains PyCharm Community Edition	logo									
+outside:syntax-highlight	Syntax Highlight	icon	squircle	gradient	object	1	soft	0	code	
+outside:dbx	DBX	logo									
+outside:cleanshot	CleanShot	icon	squircle	black	object	1	soft	0	abstract	
+outside:anythingllm	AnythingLLM	icon	squircle	white	abstract	1	flat	0	abstract	
+outside:capcut	CapCut	icon	squircle	white	abstract	1	flat	0	abstract	
+adjacent:1password	1Password	icon	squircle	gradient	letter	2	3d	0	keyhole,lock	Keyhole and numeral fused into one round mark; depth used once, centred
+adjacent:authy	Authy	icon	squircle	black	abstract	1	flat	0	abstract	
+adjacent:googleauthenticator	Google Authenticator	icon	squircle	white	abstract	1	flat	0	asterisk	
+adjacent:microsoftauthenticator	Microsoft Authenticator	icon	squircle	white	object	1	soft	0	lock,shield,person	
+adjacent:enteauth	Ente Auth	icon	squircle	solid	letter	2	flat	0	letter,shield	
+adjacent:bitwarden	Bitwarden	icon	squircle	solid	object	1	flat	0	shield	
+adjacent:protonpass	Proton Pass	icon	squircle	white	abstract	1	soft	0	diamond	
+adjacent:signal	Signal	icon	squircle	solid	object	1	flat	0	bubble	A bubble made Signal by one detail: the dashed outline, on its own blue
+adjacent:telegram	Telegram	icon	squircle	white	object	1	soft	0	plane	
+adjacent:whatsapp	WhatsApp	icon	squircle	solid	object	1	flat	0	bubble,phone	
+adjacent:line	LINE	icon	squircle	solid	wordmark	1	flat	1	bubble,wordmark	
+adjacent:threema	Threema	icon	squircle	black	object	3	flat	0	bubble,lock,dots	
+adjacent:localsend	LocalSend	icon	squircle	white	abstract	2	flat	0	ring	Dotted ring around a solid disc: nearby transfer without arrows, one colour
+adjacent:airdroid	AirDroid	icon	squircle	white	object	1	soft	0	plane	
+adjacent:kdeconnect	KDE Connect	icon	squircle	solid	object	2	soft	0	phone,letter	
+adjacent:linktowindows	Link to Windows	icon	squircle	white	object	2	3d	0	device	
+adjacent:bark	Bark	icon	squircle	solid	letter	2	flat	0	letter	
+adjacent:ntfy	ntfy	icon	squircle	gradient	object	1	soft	0	terminal,bubble	
+adjacent:tailscale	Tailscale	icon	squircle	black	abstract	1	flat	0	dots	A 3x3 dot grid, white on black: no metaphor, fully ownable, unchanged in every appearance
+adjacent:paste	Paste	icon	squircle	solid	letter	1	soft	0	letter	
+adjacent:things3	Things 3	icon	squircle	gradient	object	1	3d	0	check	One checked box with crisp edges: the app's single job is the icon
+adjacent:bear	Bear	icon	squircle	gradient	mascot	1	soft	0	bear	An animal silhouette cut into a red field: personality without a full mascot
+adjacent:craft	Craft	icon	squircle	white	abstract	1	soft	0	abstract	
+adjacent:linear	Linear	icon	squircle	black	abstract	1	soft	0	abstract	
+adjacent:arcsearch	Arc Search	icon	squircle	solid	letter	1	flat	0	letter	
+adjacent:raycast	Raycast	icon	squircle	gradient	abstract	1	soft	0	ribbon	
+adjacent:dayone	Day One	icon	squircle	solid	object	1	flat	0	bookmark	
+adjacent:halide	Halide	icon	squircle	gradient	object	1	3d	0	aperture	An aperture in tool-like metal: category through material, not a camera cliché
+adjacent:overcast	Overcast	icon	squircle	solid	object	1	soft	0	antenna	Broadcast mark, white on owned orange
+adjacent:flighty	Flighty	icon	squircle	black	object	1	3d	0	plane	A plane on black, angled for motion; two tones
+adjacent:mona	Mona	icon	squircle	solid	abstract	1	flat	0	chevron	
