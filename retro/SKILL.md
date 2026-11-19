@@ -44,7 +44,7 @@ The script runs from this skill's folder on Node.js 22.18+, with no packages to 
 - Codex: `node scripts/sessions.ts dump --codex "<thread name>" --out <scratch>/<name>.md`. The thread name is the title in Codex's sidebar; an id prefix or part of the name also works.
 - Claude Code: `node scripts/sessions.ts dump --claude <first 8 characters of the session id> --out ...`; a jsonl path also works. If you don't know the id, run `node scripts/sessions.ts list --since 7d` first.
 - To find the session, search across sessions and both hosts by meaning, including synonyms of the user's words, not only the word they used this time.
-- The dump holds the dialogue only. What the agent read and ran, and when, is in the tool calls: read those in the raw jsonl (the dump's header gives its path) and take durations from their timestamps. When the question is what the agent read, count the files each session and subagent actually opened, by kind.
+- The dump holds the dialogue only. What the agent read and ran, and when, is in the tool calls: add `--tools` to put each call between the messages as one line (time, tool, main argument, the start of its result, `✗` when it failed), and take durations from those times. Read a call's full input or output in the raw jsonl (the dump's header gives its path). When the question is what the agent read, count the files each session and subagent actually opened, by kind.
 - Compaction summaries are lossy, cut short in the dump, and slanted toward the agent's own account: take facts only from timestamped original messages. When the session under review is the current one, check every claim against the dump, because that is where an earlier self-report is most likely wrong. When a session is near its usage or context limit, export the record before it is lost.
 - For an incident (a crash, a bad release, lost data), also read the product's own records, not only the conversation: crash reports (`~/Library/Logs/DiagnosticReports/<App>-*.ips` on macOS), the product's history and logs, release records, git log.
 - Read the exported dialogue chunk by chunk to the end, the `/deep-read` way: no sampling, not only the beginning and the end.
@@ -148,6 +148,6 @@ At most three. Each gives a recommendation first (pick a side, with reasons), th
 `scripts/sessions.ts` reads Claude Code logs (`~/.claude/projects/<cwd slug>/<session id>.jsonl`) and Codex logs (`~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl`, with thread names from `~/.codex/session_index.jsonl`):
 
 - `list [--since 7d] [--until WHEN]`: sessions on both hosts with messages in the window: folder or thread name, id, first and last message time, user and assistant message counts.
-- `dump --codex <name or id prefix> | --claude <id prefix or path> [--since WHEN] [--out FILE]`: one session's user and assistant messages as Markdown, each message cut at 6,000 characters.
+- `dump --codex <name or id prefix> | --claude <id prefix or path> [--since WHEN] [--tools] [--out FILE]`: one session's user and assistant messages as Markdown, each message cut at 6,000 characters; `--tools` adds the tool calls, one line each.
 
 `WHEN` is `7d`, `36h`, `2026-10-01` or `2026-10-01T08:00` in local time.

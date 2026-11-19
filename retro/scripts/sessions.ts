@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-const usage = `Read Claude Code and Codex session logs as plain dialogue (user and assistant text; no tool calls).
+const usage = `Read Claude Code and Codex session logs as plain dialogue (user and assistant text; tool calls with --tools).
 
 Usage:
   node sessions.ts list [--since 7d] [--until WHEN]
-  node sessions.ts dump --codex <thread name, substring or id prefix> [--since WHEN] [--out FILE]
-  node sessions.ts dump --claude <session id prefix or jsonl path> [--since WHEN] [--out FILE]
+  node sessions.ts dump --codex <thread name, substring or id prefix> [--since WHEN] [--tools] [--out FILE]
+  node sessions.ts dump --claude <session id prefix or jsonl path> [--since WHEN] [--tools] [--out FILE]
 
   WHEN is 7d, 36h, 2026-10-01 or 2026-10-01T08:00 (local time).
+  --tools adds each tool call as one line between the messages: the tool, its main argument, the start of its result.
 
 Where the logs live:
   Claude Code  ~/.claude/projects/<cwd slug>/<session id>.jsonl
@@ -96,6 +97,36 @@ const inWindow = (ts: number | undefined, w: Window): ts is number =>
 const stale = (path: string, w: Window) => w.since !== undefined && statSync(path).mtimeMs < w.since;
 const byTime = (a: Msg, b: Msg) => a.ts - b.ts;
 
+// --- Tool calls (dump --tools) --------------------------------------------------
+
+let withTools = false;
+const oneLine = (s: string, n: number) => {
+  const t = s.replace(/\s+/g, " ").trim();
+  return chars(t) <= n ? t : `${head(t, n)}…`;
+};
+const mainArgs = ["command", "cmd", "file_path", "path", "pattern", "url", "query", "description"];
+const outputText = (c: unknown): string =>
+  typeof c === "string" ? c : Array.isArray(c) ? c.map((x) => (isObject(x) ? outputText(x.text ?? x.content) : "")).join(" ") : "";
+
+/** Tool calls as one-line messages, each completed by its result when that arrives. */
+function toolLog(msgs: Msg[]) {
+  const open = new Map<string, Msg>();
+  return {
+    call(id: string, ts: number, name: string, input: unknown) {
+      const args = (typeof input === "string" && record(input)) || input;
+      const arg = isObject(args) ? mainArgs.map((k) => args[k]).find((v) => typeof v === "string") ?? JSON.stringify(args) : String(args ?? "");
+      const m = { ts, role: "tool", text: `${name} ${oneLine(arg, 300)}` };
+      msgs.push(m);
+      open.set(id, m);
+    },
+    result(id: string, output: unknown, failed = false) {
+      const m = open.get(id);
+      if (m) m.text += ` → ${failed ? "✗ " : ""}${oneLine(outputText(output), 200)}`;
+      open.delete(id);
+    },
+  };
+}
+
 // --- Claude Code -------------------------------------------------------------
 
 const claudeText = (c: unknown) =>
@@ -119,6 +150,7 @@ function* claudeSessions(w: Window, paths = globSync(join(claudeRoot, "*", "*.js
     seen.add(sid);
     if (stale(path, w)) continue;
     const s: Session = { host: "claude", sid, name: basename(dirname(path)), path, msgs: [] };
+    const log = withTools ? toolLog(s.msgs) : undefined;
     let cwd = "";
     for (const line of lines(path)) {
       if (!line.includes('"type":"user"') && !line.includes('"type":"assistant"')) continue;
@@ -129,6 +161,12 @@ function* claudeSessions(w: Window, paths = globSync(join(claudeRoot, "*", "*.js
       if (!cwd && d.cwd) cwd = d.cwd;
       const text = d.type === "user" ? claudeUserText(d) : claudeText(d.message?.content);
       if (text) s.msgs.push({ ts, role: d.type, text });
+      const parts = d.message?.content;
+      if (log && Array.isArray(parts))
+        for (const c of parts.filter(isObject)) {
+          if (c.type === "tool_use") log.call(c.id, ts, c.name, c.input);
+          else if (c.type === "tool_result") log.result(c.tool_use_id, c.content, c.is_error === true);
+        }
     }
     if (!s.msgs.length) continue;
     s.msgs.sort(byTime);
@@ -168,12 +206,19 @@ function* codexSessions(w: Window, paths = globSync(join(codexRoot, "*", "*", "*
     const base = basename(path);
     const sid = /-([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/.exec(base)?.[1] ?? base;
     const s: Session = { host: "codex", sid, name: names.get(sid) ?? base, path, msgs: [] };
+    const log = withTools ? toolLog(s.msgs) : undefined;
     for (const line of lines(path)) {
       if (!line.includes('"response_item"') && !line.includes('"session_meta"')) continue;
       const d = record(line), p = d?.payload;
-      if (!d || d.type === "session_meta" || p?.type !== "message" || (p.role !== "user" && p.role !== "assistant")) continue;
+      if (!d || d.type === "session_meta" || !isObject(p)) continue;
       const ts = parseTs(d.timestamp);
       if (!inWindow(ts, w)) continue;
+      if (log && d.type === "response_item") {
+        if (p.type === "function_call" || p.type === "custom_tool_call") log.call(p.call_id, ts, p.name, p.arguments ?? p.input);
+        else if (p.type === "function_call_output" || p.type === "custom_tool_call_output") log.result(p.call_id, p.output);
+        else if (p.type === "web_search_call") log.call(p.id, ts, "web_search", p.action ?? {});
+      }
+      if (p.type !== "message" || (p.role !== "user" && p.role !== "assistant")) continue;
       const raw = (Array.isArray(p.content) ? p.content : []).filter(isObject).map((c: Json) => c.text ?? "").join("\n");
       const text = p.role === "user" ? codexUserText(raw) : strip(raw) || undefined;
       if (text) s.msgs.push({ ts, role: p.role, text });
@@ -203,19 +248,21 @@ function dumpMarkdown(sessions: Session[], maxChars = 6000) {
   return sessions
     .map((s) =>
       `\n# [${s.host}] ${s.name}  (${s.sid.slice(0, 8)}, ${s.path.replaceAll(home, "~")})\n` +
-      s.msgs.map((m) => `\n---\n## [${m.role}] ${local(m.ts, true)}\n${cut(m.text)}\n`).join(""))
+      s.msgs.map((m) => m.role === "tool"
+        ? `\n- ${local(m.ts).slice(6)} ${m.text}\n`
+        : `\n---\n## [${m.role}] ${local(m.ts, true)}\n${cut(m.text)}\n`).join(""))
     .join("");
 }
 
 const commands = {
   list: { since: { type: "string", default: "7d" }, until: { type: "string" } },
-  dump: { codex: { type: "string" }, claude: { type: "string" }, since: { type: "string" }, out: { type: "string" } },
+  dump: { codex: { type: "string" }, claude: { type: "string" }, since: { type: "string" }, out: { type: "string" }, tools: { type: "boolean" } },
 } as const;
 
 const [cmd, ...args] = process.argv.slice(2);
 if (cmd === "-h" || cmd === "--help") console.log(usage), process.exit(0);
 if (cmd !== "list" && cmd !== "dump") fail(usage, 2);
-let opt: Partial<Record<"since" | "until" | "codex" | "claude" | "out", string>> & { help?: boolean };
+let opt: Partial<Record<"since" | "until" | "codex" | "claude" | "out", string>> & { help?: boolean; tools?: boolean };
 try {
   opt = parseArgs({ args, options: { ...commands[cmd], help: { type: "boolean", short: "h" } } }).values;
 } catch (e) {
@@ -223,6 +270,7 @@ try {
 }
 if (opt.help) console.log(usage), process.exit(0);
 const since = opt.since ? parseSince(opt.since) : undefined;
+withTools = !!opt.tools;
 
 if (cmd === "list") {
   const w = { since, until: opt.until ? parseSince(opt.until) : undefined };
