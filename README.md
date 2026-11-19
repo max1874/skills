@@ -15,6 +15,7 @@ skills is a public collection of agent skills for Claude Code that I use daily a
 | [deep-read](deep-read/SKILL.md) | Reads a long transcript, PDF or article to the end, proves it, and says what it means |
 | [handoff](handoff/SKILL.md) | Hands work to a fresh session with why it exists, every open request, and settled decisions |
 | [read-repo](read-repo/SKILL.md) | Reads an unfamiliar repository in full with a coverage ledger, then compares it with your own code |
+| [bailian-transcribe](bailian-transcribe/SKILL.md) | Transcribes audio or video (Chinese first) with Alibaba Cloud Bailian into text, SRT and speaker-labelled JSON, then proofreads it |
 | [diagnose](diagnose/SKILL.md) | A red-loop-first diagnosis method for hard bugs, flaky failures and slowdowns in a running product |
 | [taste](taste/SKILL.md) | A working method and quality floor for designing screens and pages, with twenty high-taste exemplars |
 | [apple-design](apple-design/SKILL.md) | Designs and reviews Apple-platform UI against the Human Interface Guidelines and Liquid Glass |
@@ -125,7 +126,7 @@ skills 是一组公开的 Claude Code agent skill，都是我日常在用、在�
 
 ### 全部 skill
 
-除了下面详细介绍的 deep-read 和 handoff，还有 read-repo（完整读一个陌生仓库并留覆盖账本）、diagnose（先造出能复现的循环再查疑难 bug）、taste（设计界面的工作方法和质量底线）、apple-design（按 Apple 人机界面指南设计和审查）、codex-worker-guide（把一张工单派给 Codex 并逐行审）、find-skills（找同类 skill、对标写法、准备分享）、ip-design 和 ip-draw（设计原创 IP 形象并持续出图）、mac-uninstall（彻底卸载 macOS app 并审计残留）。安装：`npx skills add max1874/skills --skill <名字>`。随工具发布的 skill 在各自仓库里：open-agent-keys、open-browser-use、open-computer-use。
+除了下面详细介绍的 deep-read 和 handoff，还有 read-repo（完整读一个陌生仓库并留覆盖账本）、bailian-transcribe（用阿里云百炼把音视频转成文字稿和字幕，带说话人，再校对）、diagnose（先造出能复现的循环再查疑难 bug）、taste（设计界面的工作方法和质量底线）、apple-design（按 Apple 人机界面指南设计和审查）、codex-worker-guide（把一张工单派给 Codex 并逐行审）、find-skills（找同类 skill、对标写法、准备分享）、ip-design 和 ip-draw（设计原创 IP 形象并持续出图）、mac-uninstall（彻底卸载 macOS app 并审计残留）。安装：`npx skills add max1874/skills --skill <名字>`。随工具发布的 skill 在各自仓库里：open-agent-keys、open-browser-use、open-computer-use。
 
 ### handoff：交接时带上「为什么」，不只是「做了什么」
 
