@@ -20,6 +20,7 @@ skills is a public collection of agent skills for Claude Code that I use daily a
 | [taste](taste/SKILL.md) | A working method and quality floor for designing screens and pages, with twenty high-taste exemplars |
 | [apple-design](apple-design/SKILL.md) | Designs and reviews Apple-platform UI against the Human Interface Guidelines and Liquid Glass |
 | [codex-worker-guide](codex-worker-guide/SKILL.md) | Dispatches one work order to a Codex CLI worker and reviews every line it returns |
+| [ios-app-name](ios-app-name/SKILL.md) | Screens, checks and reserves App Store names across all 39 name locales through the App Store Connect API |
 | [find-skills](find-skills/SKILL.md) | Finds similar skills, benchmarks how a skill is written, and prepares one for sharing |
 | [ip-design](ip-design/SKILL.md) | Designs an original mascot or IP character, from three directions to a full character sheet |
 | [ip-draw](ip-draw/SKILL.md) | Draws new images of a finished IP character that stay on model |
@@ -126,7 +127,7 @@ skills 是一组公开的 Claude Code agent skill，都是我日常在用、在�
 
 ### 全部 skill
 
-除了下面详细介绍的 deep-read 和 handoff，还有 read-repo（完整读一个陌生仓库并留覆盖账本）、stt（把音视频转成文字稿和字幕，带说话人，再校对；现在用阿里云百炼，服务商可以换）、diagnose（先造出能复现的循环再查疑难 bug）、taste（设计界面的工作方法和质量底线）、apple-design（按 Apple 人机界面指南设计和审查）、codex-worker-guide（把一张工单派给 Codex 并逐行审）、find-skills（找同类 skill、对标写法、准备分享）、ip-design 和 ip-draw（设计原创 IP 形象并持续出图）、mac-uninstall（彻底卸载 macOS app 并审计残留）。安装：`npx skills add max1874/skills --skill <名字>`。随工具发布的 skill 在各自仓库里：open-agent-keys、open-browser-use、open-computer-use。
+除了下面详细介绍的 deep-read 和 handoff，还有 read-repo（完整读一个陌生仓库并留覆盖账本）、stt（把音视频转成文字稿和字幕，带说话人，再校对；现在用阿里云百炼，服务商可以换）、diagnose（先造出能复现的循环再查疑难 bug）、taste（设计界面的工作方法和质量底线）、apple-design（按 Apple 人机界面指南设计和审查）、codex-worker-guide（把一张工单派给 Codex 并逐行审）、find-skills（找同类 skill、对标写法、准备分享）、ios-app-name（筛选、查重并占用 App Store 名称，覆盖全部 39 个语言）、ip-design 和 ip-draw（设计原创 IP 形象并持续出图）、mac-uninstall（彻底卸载 macOS app 并审计残留）。安装：`npx skills add max1874/skills --skill <名字>`。随工具发布的 skill 在各自仓库里：open-agent-keys、open-browser-use、open-computer-use。
 
 ### handoff：交接时带上「为什么」，不只是「做了什么」
 

@@ -1,0 +1,44 @@
+# App Store Connect app-name locales.
+# Every line is a locale where an app name is reserved independently.
+# Verified 2026-08-18 against the live API: each one accepted a name write
+# (rejecting only on name collision, never on an unknown-locale error).
+# If Apple adds a locale, add the line — the scripts read this file.
+ar-SA
+ca
+cs
+da
+de-DE
+el
+en-AU
+en-CA
+en-GB
+en-US
+es-ES
+es-MX
+fi
+fr-CA
+fr-FR
+he
+hi
+hr
+hu
+id
+it
+ja
+ko
+ms
+nl-NL
+no
+pl
+pt-BR
+pt-PT
+ro
+ru
+sk
+sv
+th
+tr
+uk
+vi
+zh-Hans
+zh-Hant
