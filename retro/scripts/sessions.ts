@@ -14,17 +14,20 @@ Where the logs live:
   Codex        ~/.codex/sessions/YYYY/MM/DD/rollout-<ts>-<thread id>[_<fork>].jsonl
                ~/.codex/session_index.jsonl maps thread id to thread_name
 
-Needs Node.js 22.18+.
+Needs Node.js 22.18+. Other scripts can import the readers (claudeSessions, codexSessions) instead of running it.
 `;
-import { closeSync, globSync, openSync, readSync, statSync, writeFileSync } from "node:fs";
+import { closeSync, globSync, openSync, readSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 
 type Json = Record<string, any>;
-type Msg = { ts: number; role: string; text: string };
-type Session = { host: string; sid: string; name: string; path: string; msgs: Msg[] };
-type Window = { since?: number; until?: number };
+export type Msg = { ts: number; role: string; text: string };
+/** kind: "interactive" (a person in the loop), "exec" (codex exec or claude -p, prompted by a script or another
+ * agent) or "subagent" (Codex guardian, review and spawned threads). */
+export type Session = { host: string; sid: string; name: string; path: string; kind: "interactive" | "exec" | "subagent"; msgs: Msg[] };
+export type Window = { since?: number; until?: number };
 
 const home = homedir();
 const claudeRoot = join(home, ".claude", "projects");
@@ -80,14 +83,14 @@ function parseTs(s: unknown) {
   return Number.isNaN(t) ? undefined : t;
 }
 
-function parseSince(s: string) {
+export function parseSince(s: string) {
   const m = /^(\d+)([dh])$/.exec(s);
   if (m) return Date.now() - Number(m[1]) * (m[2] === "d" ? 86_400_000 : 3_600_000);
   const t = Date.parse(/^\d{4}-\d{2}-\d{2}$/.test(s) ? `${s}T00:00` : s); // a bare date is local midnight
   return Number.isNaN(t) ? fail(`cannot read the time ${s}; use 7d, 36h, 2026-10-01 or 2026-10-01T08:00`, 2) : t;
 }
 
-function local(ts: number, withYear = false) {
+export function local(ts: number, withYear = false) {
   const d = new Date(ts), p = (n: number) => String(n).padStart(2, "0");
   return `${withYear ? `${d.getFullYear()}-` : ""}${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
 }
@@ -142,14 +145,14 @@ function claudeUserText(d: Json) {
 }
 
 /** Every session under ~/.claude/projects (symlinked project folders are not followed), or only the given files. */
-function* claudeSessions(w: Window, paths = globSync(join(claudeRoot, "*", "*.jsonl")).sort()) {
+export function* claudeSessions(w: Window, paths = globSync(join(claudeRoot, "*", "*.jsonl")).sort()) {
   const seen = new Set<string>();
   for (const path of paths) {
     const sid = basename(path).slice(0, -".jsonl".length);
     if (seen.has(sid)) continue;
     seen.add(sid);
     if (stale(path, w)) continue;
-    const s: Session = { host: "claude", sid, name: basename(dirname(path)), path, msgs: [] };
+    const s: Session = { host: "claude", sid, name: basename(dirname(path)), path, kind: "interactive", msgs: [] };
     const log = withTools ? toolLog(s.msgs) : undefined;
     let cwd = "";
     for (const line of lines(path)) {
@@ -159,6 +162,7 @@ function* claudeSessions(w: Window, paths = globSync(join(claudeRoot, "*", "*.js
       const ts = parseTs(d.timestamp);
       if (!inWindow(ts, w)) continue;
       if (!cwd && d.cwd) cwd = d.cwd;
+      if (String(d.entrypoint ?? "").startsWith("sdk")) s.kind = "exec";
       const text = d.type === "user" ? claudeUserText(d) : claudeText(d.message?.content);
       if (text) s.msgs.push({ ts, role: d.type, text });
       const parts = d.message?.content;
@@ -199,18 +203,25 @@ function codexUserText(raw: string) {
 }
 
 /** Every rollout under ~/.codex/sessions, or only the given files. */
-function* codexSessions(w: Window, paths = globSync(join(codexRoot, "*", "*", "*", "*.jsonl")).sort()) {
+export function* codexSessions(w: Window, paths = globSync(join(codexRoot, "*", "*", "*", "*.jsonl")).sort()) {
   const names = codexThreadNames();
   for (const path of paths) {
     if (stale(path, w)) continue;
     const base = basename(path);
     const sid = /-([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/.exec(base)?.[1] ?? base;
-    const s: Session = { host: "codex", sid, name: names.get(sid) ?? base, path, msgs: [] };
+    const s: Session = { host: "codex", sid, name: names.get(sid) ?? base, path, kind: "interactive", msgs: [] };
     const log = withTools ? toolLog(s.msgs) : undefined;
+    let meta = false;
     for (const line of lines(path)) {
       if (!line.includes('"response_item"') && !line.includes('"session_meta"')) continue;
       const d = record(line), p = d?.payload;
-      if (!d || d.type === "session_meta" || !isObject(p)) continue;
+      if (!d || !isObject(p)) continue;
+      if (d.type === "session_meta") {
+        // a spawned thread also carries its parent's meta later on; the first one is its own
+        if (!meta) s.kind = typeof p.source !== "string" ? "subagent" : p.source === "exec" ? "exec" : "interactive";
+        meta = true;
+        continue;
+      }
       const ts = parseTs(d.timestamp);
       if (!inWindow(ts, w)) continue;
       if (log && d.type === "response_item") {
@@ -259,35 +270,36 @@ const commands = {
   dump: { codex: { type: "string" }, claude: { type: "string" }, since: { type: "string" }, out: { type: "string" }, tools: { type: "boolean" } },
 } as const;
 
-const [cmd, ...args] = process.argv.slice(2);
-if (cmd === "-h" || cmd === "--help") console.log(usage), process.exit(0);
-if (cmd !== "list" && cmd !== "dump") fail(usage, 2);
-let opt: Partial<Record<"since" | "until" | "codex" | "claude" | "out", string>> & { help?: boolean; tools?: boolean };
-try {
-  opt = parseArgs({ args, options: { ...commands[cmd], help: { type: "boolean", short: "h" } } }).values;
-} catch (e) {
-  fail(`${(e as Error).message}\n\n${usage}`, 2);
-}
-if (opt.help) console.log(usage), process.exit(0);
-const since = opt.since ? parseSince(opt.since) : undefined;
-withTools = !!opt.tools;
-
-if (cmd === "list") {
-  const w = { since, until: opt.until ? parseSince(opt.until) : undefined };
-  const rows: [number, string, string, string, string, string, number, number][] = [];
-  for (const s of [claudeSessions(w), codexSessions(w)].values().flatMap((it) => it)) {
-    const user = s.msgs.filter((m) => m.role === "user").length;
-    const first = s.msgs[0]!.ts, last = s.msgs.at(-1)!.ts;
-    rows.push([first, s.host, s.name, s.sid.slice(0, 8), local(first), local(last), user, s.msgs.length - user]);
+function main([cmd, ...args]: string[]) {
+  if (cmd === "-h" || cmd === "--help") console.log(usage), process.exit(0);
+  if (cmd !== "list" && cmd !== "dump") fail(usage, 2);
+  let opt: Partial<Record<"since" | "until" | "codex" | "claude" | "out", string>> & { help?: boolean; tools?: boolean };
+  try {
+    opt = parseArgs({ args, options: { ...commands[cmd], help: { type: "boolean", short: "h" } } }).values;
+  } catch (e) {
+    fail(`${(e as Error).message}\n\n${usage}`, 2);
   }
-  rows.sort((a, b) => {
-    for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i]! < b[i]! ? -1 : 1;
-    return 0;
-  });
-  console.log(`${pad("host", 6)} ${pad("session", 52)} ${pad("id", 8)} ${pad("first", 11)} ${pad("last", 11)} ${"user".padStart(5)} ${"asst".padStart(5)}`);
-  for (const [, host, name, id, first, last, user, asst] of rows)
-    console.log(`${pad(host, 6)} ${pad(head(name, 52), 52)} ${pad(id, 8)} ${pad(first, 11)} ${pad(last, 11)} ${String(user).padStart(5)} ${String(asst).padStart(5)}`);
-} else {
+  if (opt.help) console.log(usage), process.exit(0);
+  const since = opt.since ? parseSince(opt.since) : undefined;
+  withTools = !!opt.tools;
+
+  if (cmd === "list") {
+    const w = { since, until: opt.until ? parseSince(opt.until) : undefined };
+    const rows: [number, string, string, string, string, string, number, number][] = [];
+    for (const s of [claudeSessions(w), codexSessions(w)].values().flatMap((it) => it)) {
+      const user = s.msgs.filter((m) => m.role === "user").length;
+      const first = s.msgs[0]!.ts, last = s.msgs.at(-1)!.ts;
+      rows.push([first, s.host, s.name, s.sid.slice(0, 8), local(first), local(last), user, s.msgs.length - user]);
+    }
+    rows.sort((a, b) => {
+      for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i]! < b[i]! ? -1 : 1;
+      return 0;
+    });
+    console.log(`${pad("host", 6)} ${pad("session", 52)} ${pad("id", 8)} ${pad("first", 11)} ${pad("last", 11)} ${"user".padStart(5)} ${"asst".padStart(5)}`);
+    for (const [, host, name, id, first, last, user, asst] of rows)
+      console.log(`${pad(host, 6)} ${pad(head(name, 52), 52)} ${pad(id, 8)} ${pad(first, 11)} ${pad(last, 11)} ${String(user).padStart(5)} ${String(asst).padStart(5)}`);
+    return;
+  }
   const w = { since };
   let sessions: Session[];
   if (opt.codex) {
@@ -310,3 +322,6 @@ if (cmd === "list") {
     process.stdout.write(md);
   }
 }
+
+// Run as a command, not when imported (argv[1] keeps the path it was run by, which may be a link).
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) main(process.argv.slice(2));
