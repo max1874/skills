@@ -11,9 +11,9 @@ Drawing uses Codex's built-in image generation, which comes with a ChatGPT subsc
 
 ## Install
 
-Put the whole `ip-design` folder under `~/.codex/skills/` (create that folder if it doesn't exist), then restart Codex.
+Put the whole `ip-design` folder under `~/.agents/skills/` (create that folder if it doesn't exist), then restart Codex.
 
-If you'd rather not do it yourself, you can also drag the zip into Codex and tell it: "install this skill into ~/.codex/skills/".
+If you'd rather not do it yourself, you can also drag the zip into Codex and tell it: "install this skill into ~/.agents/skills/".
 
 ## How to use
 
